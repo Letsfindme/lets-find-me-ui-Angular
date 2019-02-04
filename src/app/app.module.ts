@@ -20,12 +20,14 @@ import { UserComponent } from './user/user.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UserServiceService} from './user-service.service';
 import { Interceptor } from './core/inteceptor.service';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    BreadcrumbComponent
   ],
   imports: [
     HttpClientModule,

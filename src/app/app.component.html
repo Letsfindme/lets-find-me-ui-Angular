@@ -1,7 +1,51 @@
+<app-breadcrumb (toggleMenu)=reciveToggleMenu($event)></app-breadcrumb>
+<!-- Menu -->
+<nav [ngClass]='{"expanded" : expand}'>
+  <button (click)='reciveToggleMenu()' class="close-button hidden-xs-up">
+      <span class="glyphicon glyphicon-remove visible-xs-block"></span>
+  </button>
 
-<app-main-nav>
+  <div class="menu_bloc">
+      <a routerLink="/news">
+          <img src="" alt="img" />
+      </a>
+
+      <mat-toolbar>
+        <img class="userprofile" src="assets/img/User_Avatar-04-512.png">
+        <a routerLink='login'>
+        <button mat-raised-button 
+        (click)="loginPage()" 
+        color="primary" 
+        class="userprofile">Login</button></a>
+      </mat-toolbar>
+  
+      <hr>
+  
+      <div class="categor">
+        <p>Categories</p>
+        <mat-nav-list>
+          <a mat-list-item href="#">Hotel</a>
+          <a mat-list-item href="#">Housing</a>
+          <a mat-list-item href="#">Restaurant</a>
+          <a mat-list-item href="#">Flight</a>
+        </mat-nav-list>
+      </div>
+      <hr>
+      <mat-nav-list>
+        <a mat-list-item href="#">Setting</a>
+        <a mat-list-item href="#">Rate us</a>
+      </mat-nav-list>
+  </div>
+
+  <div class="feedback center-content">
+      <button (click)="showDialog = !showDialog">Send your feedback!</button>
+  </div>
+</nav>
+
+
+
   <router-outlet></router-outlet>
-</app-main-nav>
+
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>

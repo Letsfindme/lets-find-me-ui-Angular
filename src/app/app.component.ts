@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'im-front';
+  title = 'Im-here';
+  expand: boolean = false;
+
+  public reciveToggleMenu(event?: any) {
+    this.expand = !this.expand;
+}
 }
