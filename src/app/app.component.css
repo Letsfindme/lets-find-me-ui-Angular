@@ -1,43 +1,61 @@
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
 nav {
-    position: fixed;
-    box-sizing: border-box;
-    top: 0;
-    bottom: 0;
-    display: block;
-    font-size: 1rem;
-    text-transform: uppercase;
-    background-color: #1E88E5;
-    transition: color .3s ease;
-    left: -100%;
-    width: 230px;
-    z-index: 2;
-    box-shadow: 0 0 30px black;
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  bottom: 0;
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: #1E88E5;
+  transition: color .3s ease;
+  left: -100%;
+  width: 230px;
+  z-index: 3;
+  box-shadow: 0 0 30px black;
+  transition: 0.3s;
 }
+
 .expanded {
-    left: 0;
-    transition: 0.3s;
-  }
-  
-.userprofile{
+  left: 0 !important;
+  transition: 0.3s;
+}
 
-    width: 50px;
-    margin: 1vw 3vw 1vw 1vw;
+.user-profile {
+  width: 50px;
+  margin: 20px 30px 0px 20px;
+  float: left;
+}
 
-  }
+.btn-login {
+  margin-top: 30px;
+  float: left;
+}
+.close-bkgd{
+  position: fixed;
+  width: 100%;
+  background-color: #1E88E5;
+  height: 100%;
+  left: -100%;
+  box-shadow: 0 0 30px black;
+  opacity: 0.4;
+  z-index: 2;
+}
+.categor {
+  margin: 1em;
+  margin-top: 5vw;
+  color: white;
+}
 
-  .categor{
-    margin: 1em;
-    margin-top: 5vw;
-    color: white;
-  }
-  a.mat-list-item{
-    color: white;
-  }
-  .close-button {
-    float: right;
-  }
-  .clear{
-    clear: both;
-  }
+a.mat-list-item {
+  color: white;
+}
+
+.close-button {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}

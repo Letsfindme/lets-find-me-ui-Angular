@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Im-here';
   expand: boolean = false;
-
-  public reciveToggleMenu(event?: any) {
+  constructor(private router: Router) {
+  }
+  public toggleMenu(event?: any) {
     this.expand = !this.expand;
-}
+    this.title = event;
+  }
+  loginPage(): void {
+    this.router.navigate(['login']);
+    this.expand = !this.expand;
+  }
 }
