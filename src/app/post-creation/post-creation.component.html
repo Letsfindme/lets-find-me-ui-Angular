@@ -1,3 +1,16 @@
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="fGroup">
+      <input formControlName="name"  style="border: solid">
+      <input formControlName="pass" style="border: solid">
+    </div>
+  <div >
+    <button type="submit"  style="border: solid"> save</button>
+  </div>
+
+</form>
+
+
 <div class="post-creation">
   <h1 class="black-text">Create a post</h1>
   <article class="col-xs-12 col-lg-6 col-lg-offset-3">

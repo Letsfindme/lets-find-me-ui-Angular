@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormArray, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatToolbarModule,
@@ -44,12 +44,13 @@ import {PostCreationModule} from './post-creation/post-creation.module';
     MatListModule,
     MatCardModule,
     MatFormFieldModule,
-    FormsModule,
     MatProgressSpinnerModule,
     MatInputModule,
     MatRippleModule,
     MatTableModule,
-    PostCreationModule
+    PostCreationModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     HttpClientModule,

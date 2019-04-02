@@ -1,4 +1,6 @@
+<!--Bread Crumb and Nav bar-->
 <app-breadcrumb (toggleMenu)=toggleMenu($event)></app-breadcrumb>
+
 
 <!-- Menu -->
 <nav [ngClass]='{"expanded" : expand}'>
@@ -38,12 +40,15 @@
   </div>
 
   <div class="feedback center-content">
-    <button >Contact Us!</button>
+    <button>Contact Us!</button>
   </div>
 </nav>
 <div [ngClass]='{"expanded" : expand}' class="close-bkgd" (click)='toggleMenu()'></div>
 
-<app-post-creation> </app-post-creation>
+<!--Background Image-->
+<div class="img-container"></div>
+
+<!--<app-post-creation></app-post-creation>-->
 
 <router-outlet></router-outlet>
 
