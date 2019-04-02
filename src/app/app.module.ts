@@ -13,7 +13,6 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
@@ -21,10 +20,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UserServiceService} from './user-service.service';
 import { Interceptor } from './core/inteceptor.service';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { PostCreationComponent } from './post-creation/post-creation.component';
+import {PostCreationService} from './post-creation/post-creation.service';
+import {PostCreationModule} from './post-creation/post-creation.module';
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent,
     LoginComponent,
     UserComponent,
     BreadcrumbComponent
@@ -47,10 +48,12 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatProgressSpinnerModule,
     MatInputModule,
     MatRippleModule,
-    MatTableModule
+    MatTableModule,
+    PostCreationModule
   ],
   providers: [
     HttpClientModule,
+    PostCreationService,
     UserServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],

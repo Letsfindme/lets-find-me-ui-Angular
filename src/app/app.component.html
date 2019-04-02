@@ -1,47 +1,49 @@
-<app-breadcrumb (toggleMenu)=reciveToggleMenu($event)></app-breadcrumb>
+<app-breadcrumb (toggleMenu)=toggleMenu($event)></app-breadcrumb>
+
 <!-- Menu -->
 <nav [ngClass]='{"expanded" : expand}'>
   <div class="menu_bloc">
     <div>
-      <img class="userprofile" src="assets/img/User_Avatar-04-512.png">
-      <a routerLink='login'>
-        <button mat-raised-button
-                (click)="loginPage()"
-                color="primary"
-                class="userprofile">Login
-        </button>
-      </a>
-      <div class="close-button">
-        <button (click)='reciveToggleMenu()' >
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
+      <img class="user-profile" src="assets/img/User_Avatar-04-512.png">
+
+      <div class="btn-login">
+        <a routerLink='login'>
+          <button mat-raised-button
+                  (click)="loginPage()"
+                  color="primary"
+          >Login
+          </button>
+        </a>
       </div>
+
     </div>
     <div class="clear"></div>
 
-  <hr>
+    <hr>
 
-  <div class="categor">
-    <p>Categories</p>
+    <div class="categor">
+      <p>Categories</p>
+      <mat-nav-list>
+        <a mat-list-item href="#">Hotel</a>
+        <a mat-list-item href="#">Housing</a>
+        <a mat-list-item href="#">Restaurant</a>
+        <a mat-list-item href="#">Flight</a>
+      </mat-nav-list>
+    </div>
+    <hr>
     <mat-nav-list>
-      <a mat-list-item href="#">Hotel</a>
-      <a mat-list-item href="#">Housing</a>
-      <a mat-list-item href="#">Restaurant</a>
-      <a mat-list-item href="#">Flight</a>
+      <a mat-list-item href="#">Setting</a>
+      <a mat-list-item href="#">Rate us</a>
     </mat-nav-list>
-  </div>
-  <hr>
-  <mat-nav-list>
-    <a mat-list-item href="#">Setting</a>
-    <a mat-list-item href="#">Rate us</a>
-  </mat-nav-list>
   </div>
 
   <div class="feedback center-content">
-    <button (click)="showDialog = !showDialog">Send your feedback!</button>
+    <button >Contact Us!</button>
   </div>
 </nav>
+<div [ngClass]='{"expanded" : expand}' class="close-bkgd" (click)='toggleMenu()'></div>
 
+<app-post-creation> </app-post-creation>
 
 <router-outlet></router-outlet>
 
