@@ -1,24 +1,15 @@
 <!--Bread Crumb and Nav bar-->
-<app-breadcrumb (toggleMenu)=toggleMenu($event)></app-breadcrumb>
+<app-breadcrumb (toggleMenu)=toggleMenu($event)>
+
+  
+
+</app-breadcrumb>
 
 
 <!-- Menu -->
 <nav [ngClass]='{"expanded" : expand}'>
   <div class="menu_bloc">
-    <div>
-      <img class="user-profile" src="assets/img/User_Avatar-04-512.png">
-
-      <div class="btn-login">
-        <a routerLink='login'>
-          <button mat-raised-button
-                  (click)="loginPage()"
-                  color="primary"
-          >Login
-          </button>
-        </a>
-      </div>
-
-    </div>
+    
     <div class="clear"></div>
 
     <hr>
@@ -26,6 +17,9 @@
     <div class="categor">
       <p>Categories</p>
       <mat-nav-list>
+          <div class="nav-icon-container">
+              <svg><use xlink:href="/assets/icons-f1e1e3187fbe3fe3aa42a17cb2558778f1a2ddc2a1914f0ea7ea59d27b4e425c.svg#project"></use></svg>
+              </div>
         <a mat-list-item href="#">Hotel</a>
         <a mat-list-item href="#">Housing</a>
         <a mat-list-item href="#">Restaurant</a>
@@ -47,6 +41,9 @@
 
 <!--Background Image-->
 <div class="img-container"></div>
+<div class="plus-button-container">
+  <button class="plus-button plus-button--large"></button>
+</div>
 
 <!--<app-post-creation></app-post-creation>-->
 
