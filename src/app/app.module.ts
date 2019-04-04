@@ -50,7 +50,7 @@ import {PostCreationModule} from './post-creation/post-creation.module';
     MatTableModule,
     PostCreationModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     HttpClientModule,

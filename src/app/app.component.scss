@@ -1,12 +1,12 @@
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
+
 nav {
   position: fixed;
   box-sizing: border-box;
   top: 0;
   bottom: 0;
   display: block;
-  font-size: 1rem;
   text-transform: uppercase;
   background-color: #FAFAFA;
   transition: color .3s ease;
@@ -17,6 +17,31 @@ nav {
   transition: 0.3s;
 }
 
+.Categories-text{
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 20px 16px 20px 10px;
+  color: #292961;
+}
+
+.Categories-icon{
+  flex: 0 0 40px;
+  font-size: 2rem;
+}
+
+
+mat-nav-list a i{
+  margin-right: 10px;
+}
+
+.setting, .Categories{
+  display: flex;
+  align-items: center;
+  border-left:4px solid #393982;  
+}
+
 @media screen and (min-width: 800px) {
   nav{
     float: left;
@@ -25,11 +50,7 @@ nav {
     background-color: #FAFAFA;
     box-shadow: none;
   }
-  .categor {
-    color: #393982;
-  }
 }
-
 
 .img-container{
   background-image: url("../assets/img/people-communicating0.jpg");
@@ -44,8 +65,6 @@ nav {
   transition: 0.3s;
 }
 
-
-
 .close-bkgd{
   position: fixed;
   width: 100%;
@@ -55,12 +74,6 @@ nav {
   box-shadow: 0 0 30px black;
   opacity: 0.4;
   z-index: 2;
-}
-
-.categor {
-  margin: 1em;
-  margin-top: 5vw;
-  color: #393982;
 }
 
 a.mat-list-item {
@@ -93,12 +106,10 @@ a.mat-list-item {
       left: 50%;
       transform: translate(-50%, -50%);
     }
-    
     &:before {
       height: 1em;
       width: 0.2em;
     }
-
     &:after {
       height: 0.2em;
       width: 1em;
