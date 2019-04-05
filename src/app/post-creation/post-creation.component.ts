@@ -12,13 +12,17 @@ import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class PostCreationComponent implements OnInit {
   post: Post;
-  myForm: FormGroup;
+  postForm: FormGroup;
 
   constructor(
     private postCrationService: PostCreationService,
     private fb: FormBuilder
   ) {
     this.post = new Post();
+    this.postForm = this.fb.group({
+      hideRequired: false,
+      floatLabel: 'auto'
+    });
   }
 
   ngOnInit() {

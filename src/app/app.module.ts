@@ -8,7 +8,12 @@ import {
   MatIconModule,
   MatListModule,
   MatCardModule,
-  MatRippleModule, MatInputModule, MatFormFieldModule, MatProgressSpinnerModule, MatTableModule, MatDialogModule
+  MatRippleModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatDialogModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
