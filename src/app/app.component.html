@@ -1,10 +1,5 @@
 <!--Bread Crumb and Nav bar-->
-<app-breadcrumb (toggleMenu)=toggleMenu($event)>
-
-  
-
-</app-breadcrumb>
-
+<app-breadcrumb (toggleMenu)=toggleMenu($event)></app-breadcrumb>
 
 <!-- Menu -->
 <nav [ngClass]='{"expanded" : expand}'>
@@ -29,7 +24,7 @@
         <a mat-list-item href="#"><i class="fas fa-star"></i>Rate us</a>
         <a mat-list-item href="#"><i class="fas fa-envelope"></i>Contact Us!</a>
       </mat-nav-list>
-  </div>
+    </div>
   </div>
 </nav>
 
@@ -38,7 +33,9 @@
 <!--Background Image-->
 <div class="img-container"></div>
 <div class="plus-button-container">
-  <button class="plus-button plus-button--large"></button>
+  <a routerLink='postCreation'>
+    <button class="plus-button plus-button--large"></button>
+  </a>
 </div>
 
 <!--<app-post-creation></app-post-creation>-->
@@ -46,7 +43,3 @@
 <router-outlet></router-outlet>
 
 <!--The content below is only a placeholder and can be replaced.-->
-
-
-
-
