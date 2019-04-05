@@ -26,18 +26,9 @@ export class PostCreationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      fGroup: this.fb.group({
-        name: [''],
-        pass: ['']
-      })
-    });
   }
 
   onSubmit(): void {
-    console.log(this.myForm.controls.fGroup.value);
-    console.log(this.myForm.value);
-    console.log(this.myForm.controls.fGroup.get('pass').value);
   }
   createPost() {
     this.postCrationService.createPost(this.post)
