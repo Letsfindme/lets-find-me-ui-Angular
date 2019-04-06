@@ -1,7 +1,23 @@
+
+<app-main-nav>
+
+  <!--Background Image-->
+  <div class="img-container"></div>
+  <div class="plus-button-container">
+    <a routerLink='postCreation'>
+      <button class="plus-button plus-button--large"></button>
+    </a>
+  </div>
+
+  <!--<app-post-creation></app-post-creation>-->
+
+  <router-outlet></router-outlet>
+
+</app-main-nav>
 <!--Bread Crumb and Nav bar-->
 <app-breadcrumb (toggleMenu)=toggleMenu($event)></app-breadcrumb>
 
-<!-- Menu -->
+<!-- Menu
 <nav [ngClass]='{"expanded" : expand}'>
   <div class="menu_bloc">
     <div class="Categories-text">
@@ -26,20 +42,12 @@
       </mat-nav-list>
     </div>
   </div>
-</nav>
+</nav>-->
+
+
 
 <div [ngClass]='{"expanded" : expand}' class="close-bkgd" (click)='toggleMenu()'></div>
 
-<!--Background Image-->
-<div class="img-container"></div>
-<div class="plus-button-container">
-  <a routerLink='postCreation'>
-    <button class="plus-button plus-button--large"></button>
-  </a>
-</div>
 
-<!--<app-post-creation></app-post-creation>-->
-
-<router-outlet></router-outlet>
 
 <!--The content below is only a placeholder and can be replaced.-->
