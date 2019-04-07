@@ -13,7 +13,8 @@ import {
   MatFormFieldModule,
   MatProgressSpinnerModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +58,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     MatTableModule,
     PostCreationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule
   ],
   providers: [
     HttpClientModule,
