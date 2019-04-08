@@ -12,28 +12,23 @@ import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class PostCreationComponent implements OnInit {
   post: Post;
-  myForm: FormGroup;
+  postForm: FormGroup;
 
   constructor(
     private postCrationService: PostCreationService,
     private fb: FormBuilder
   ) {
     this.post = new Post();
-  }
-
-  ngOnInit() {
-    this.myForm = this.fb.group({
-      fGroup: this.fb.group({
-        name: [''],
-        pass: ['']
-      })
+    this.postForm = this.fb.group({
+      hideRequired: false,
+      floatLabel: 'auto'
     });
   }
 
+  ngOnInit() {
+  }
+
   onSubmit(): void {
-    console.log(this.myForm.controls.fGroup.value);
-    console.log(this.myForm.value);
-    console.log(this.myForm.controls.fGroup.get('pass').value);
   }
   createPost() {
     this.postCrationService.createPost(this.post)

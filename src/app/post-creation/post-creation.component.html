@@ -1,33 +1,36 @@
 
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div formGroupName="fGroup">
-      <input formControlName="name"  style="border: solid">
-      <input formControlName="pass" style="border: solid">
+
+<div class="post-container">
+  <form class="example-container" [formGroup]="postForm">
+    <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
+    <div>
+      <label>Float label: </label>
+      <mat-radio-group formControlName="floatLabel">
+        <mat-radio-button value="auto">Auto</mat-radio-button>
+        <mat-radio-button value="always">Always</mat-radio-button>
+        <mat-radio-button value="never">Never</mat-radio-button>
+      </mat-radio-group>
     </div>
-  <div >
-    <button type="submit"  style="border: solid"> save</button>
-  </div>
+  </form>
 
-</form>
+  <mat-form-field
+    [hideRequiredMarker]="postForm.value.hideRequired"
+    [floatLabel]="postForm.value.floatLabel">
+    <input matInput placeholder="Simple placeholder" required>
+  </mat-form-field>
 
+  <mat-form-field [floatLabel]="postForm.value.floatLabel">
+    <mat-label>Both a label and a placeholder</mat-label>
+    <input matInput placeholder="Simple placeholder">
+  </mat-form-field>
 
-<div class="post-creation">
-  <h1 class="black-text">Create a post</h1>
-  <article class="col-xs-12 col-lg-6 col-lg-offset-3">
-
-    <fieldset>
-      <input  class="col-xs-12" type="text" name="title" placeholder="Post Title">
-    </fieldset>
-
-    <fieldset id="content">
-        <textarea class="col-xs-12 content"
-               type="text"
-               name="content"
-               placeholder="type your post here">
-          </textarea>
-    </fieldset>
-
-    <button id="send"  class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5 center">Create</button>
-
-  </article>
+  <mat-form-field
+    [hideRequiredMarker]="postForm.value.hideRequired"
+    [floatLabel]="postForm.value.floatLabel">
+    <mat-select required>
+      <mat-option>-- None --</mat-option>
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+    <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
+  </mat-form-field>
 </div>
