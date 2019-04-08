@@ -1,59 +1,45 @@
 <!--Bread Crumb and Nav bar-->
 <app-breadcrumb (toggleMenu)=toggleMenu($event)></app-breadcrumb>
 
-
 <!-- Menu -->
 <nav [ngClass]='{"expanded" : expand}'>
   <div class="menu_bloc">
-    <div>
-      <img class="user-profile" src="assets/img/User_Avatar-04-512.png">
-
-      <div class="btn-login">
-        <a routerLink='login'>
-          <button mat-raised-button
-                  (click)="loginPage()"
-                  color="primary"
-          >Login
-          </button>
-        </a>
-      </div>
-
+    <div class="Categories-text">
+      <div class="Categories-icon"><i class="fas fa-crosshairs"></i></div>
+      <div><a>Categories</a></div>
     </div>
-    <div class="clear"></div>
-
-    <hr>
-
-    <div class="categor">
-      <p>Categories</p>
+    <div class="Categories">
       <mat-nav-list>
-        <a mat-list-item href="#">Hotel</a>
-        <a mat-list-item href="#">Housing</a>
-        <a mat-list-item href="#">Restaurant</a>
-        <a mat-list-item href="#">Flight</a>
+        <a mat-list-item href="#"><i class="fas fa-hotel"></i>Hotel</a>
+        <a mat-list-item href="#"><i class="fas fa-door-open"></i>Housing</a>
+        <a mat-list-item href="#"><i class="fas fa-utensils"></i>Restaurant</a>
+        <a mat-list-item href="#"><i class="fas fa-plane-departure"></i>Flight</a>
       </mat-nav-list>
     </div>
-    <hr>
-    <mat-nav-list>
-      <a mat-list-item href="#">Setting</a>
-      <a mat-list-item href="#">Rate us</a>
-    </mat-nav-list>
-  </div>
 
-  <div class="feedback center-content">
-    <button>Contact Us!</button>
+    <hr>
+    <div class="setting">
+      <mat-nav-list>
+        <a mat-list-item href="#"><i class="fas fa-user-cog"></i>Setting</a>
+        <a mat-list-item href="#"><i class="fas fa-star"></i>Rate us</a>
+        <a mat-list-item href="#"><i class="fas fa-envelope"></i>Contact Us!</a>
+      </mat-nav-list>
+    </div>
   </div>
 </nav>
+
 <div [ngClass]='{"expanded" : expand}' class="close-bkgd" (click)='toggleMenu()'></div>
 
 <!--Background Image-->
 <div class="img-container"></div>
+<div class="plus-button-container">
+  <a routerLink='postCreation'>
+    <button class="plus-button plus-button--large"></button>
+  </a>
+</div>
 
 <!--<app-post-creation></app-post-creation>-->
 
 <router-outlet></router-outlet>
 
 <!--The content below is only a placeholder and can be replaced.-->
-
-
-
-

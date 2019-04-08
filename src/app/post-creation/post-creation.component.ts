@@ -8,7 +8,7 @@ import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-post-creation',
   templateUrl: './post-creation.component.html',
-  styleUrls: ['./post-creation.component.css']
+  styleUrls: ['./post-creation.component.scss']
 })
 export class PostCreationComponent implements OnInit {
   post: Post;

@@ -1,0 +1,57 @@
+
+.ariane {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  display: flex;
+  color:white;
+  height: 45px;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background-color: #292961;
+}
+
+.hamandlogo{
+  margin-top: 10px;
+}
+
+@media (min-width: 800px){
+  .hamandlogo{
+    display: none;
+  }
+  .im-here-img{
+    margin-left: 20px;
+  }
+}
+
+.menuPicto {
+  display: inline-block;
+  width: 30px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.menuPicto div {
+  height: 3px;
+  margin-bottom: 3px;
+  background-color: white;
+}
+
+.im-here-img{
+  width: 40px;
+}
+
+.user-profile {
+  padding:0 10px;
+  float: right;
+  width: 55px;
+}
+
+.btn-login {
+  float: right;
+}
+.profile-container{
+  position: fixed;
+  right: 0;
+}
