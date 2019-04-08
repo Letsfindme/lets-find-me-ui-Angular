@@ -13,7 +13,8 @@ import {
   MatFormFieldModule,
   MatProgressSpinnerModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,12 +29,14 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { PostCreationComponent } from './post-creation/post-creation.component';
 import {PostCreationService} from './post-creation/post-creation.service';
 import {PostCreationModule} from './post-creation/post-creation.module';
+import { MainNavComponent } from './main-nav/main-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    MainNavComponent
   ],
   imports: [
     HttpClientModule,
@@ -55,7 +58,8 @@ import {PostCreationModule} from './post-creation/post-creation.module';
     MatTableModule,
     PostCreationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatMenuModule
   ],
   providers: [
     HttpClientModule,

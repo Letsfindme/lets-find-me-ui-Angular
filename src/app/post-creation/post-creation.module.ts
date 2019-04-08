@@ -5,6 +5,7 @@ import {PostCreationComponent} from './post-creation.component';
 import {PostCreationService} from './post-creation.service';
 import {FormArray, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
+  MatCardModule,
   MatCheckbox,
   MatCheckboxModule,
   MatFormFieldModule,
@@ -25,7 +26,8 @@ import {
       MatOptionModule,
       MatSelectModule,
       MatIconModule,
-      MatInputModule
+      MatInputModule,
+      MatCardModule
     ],
     declarations: [ PostCreationComponent ],
     exports: [

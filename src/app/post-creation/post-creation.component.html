@@ -1,7 +1,7 @@
 
 
-<div class="post-container">
-  <form class="example-container" [formGroup]="postForm">
+<mat-card class="post-card">
+  <form class="post-container" [formGroup]="postForm">
     <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
     <div>
       <label>Float label: </label>
@@ -33,4 +33,4 @@
     </mat-select>
     <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
   </mat-form-field>
-</div>
+</mat-card>

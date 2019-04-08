@@ -1,5 +1,8 @@
 
-.post-container{
+.post-card{
+  margin: 50px auto;
+  padding: 0 50px;
+  max-width: 50rem;
   display: flex;
   flex-direction: column;
 }

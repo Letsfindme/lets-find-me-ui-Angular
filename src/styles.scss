@@ -1,16 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body {
   height: 100%;
+  margin: 0;
+  min-width: 350px;
 }
 
-@media (min-width: 800px){
-  html, body{
-    margin-left:  230px;
-    transition: .3s ease;
-  }
-}
 body {
   margin:  0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
