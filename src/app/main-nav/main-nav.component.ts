@@ -18,7 +18,7 @@ export class MainNavComponent {
       map(result => result.matches)
     );
 
-  constructor(private _router: Router,
+  constructor(public _router: Router,
               private breakpointObserver: BreakpointObserver) {}
               ngOnInit() {
     this.isHandset$.subscribe(isHandset => console.log(isHandset));

@@ -30,6 +30,7 @@ import { PostCreationComponent } from './post-creation/post-creation.component';
 import {PostCreationService} from './post-creation/post-creation.service';
 import {PostCreationModule} from './post-creation/post-creation.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import { httpInterceptorProviders } from './auth/auth-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     HttpClientModule,
     PostCreationService,
     UserServiceService,
+    httpInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [AppComponent],
