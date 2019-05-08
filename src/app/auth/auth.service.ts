@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
-import { JwtResponse } from './jwt-response';
-import { AuthLoginInfo } from './login-info';
-import { SignUpInfo } from './signup-info';
+import { JwtResponse } from '../models/jwt-response';
+import { AuthLoginInfo } from '../models/login-info';
+import { SignUpInfo } from '../models/signup-info';
+import { TokenStorageService } from './token-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,11 +15,22 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   private loginUrl = 'http://localhost:8080/api/auth/signin';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
 
-  constructor(private http: HttpClient) {
+  constructor(private tokenStorage: TokenStorageService,private http: HttpClient) {
+  }
+  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  
+  ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.loggedIn.next(true);
+    }
+  }
+  get isLoggedIn() {
+    this.ngOnInit();
+    return this.loggedIn.asObservable(); // {2}
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {

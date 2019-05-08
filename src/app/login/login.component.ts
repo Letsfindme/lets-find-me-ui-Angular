@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
-import { AuthLoginInfo } from '../auth/login-info';
+import { AuthLoginInfo } from '../models/login-info';
 import { resolve } from 'dns';
 import { promise } from 'protractor';
 // noinspection JSAnnotator
