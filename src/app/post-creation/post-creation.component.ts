@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import 'rxjs/add/operator/map';
 import {PostCreationService} from './post-creation.service';
-import {Post} from './post.model';
+import {Post} from '../models/post.model';
 import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
