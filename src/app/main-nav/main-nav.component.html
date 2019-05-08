@@ -1,11 +1,9 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav"
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="!(isHandset$ | async)">
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary">
       <a routerLink="/news">
-        <img class="im-here-img" src="../../assets/img/logo.png" alt="img"/>
+        <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
         <p>I'm here</p>
       </a>
     </mat-toolbar>
@@ -32,29 +30,39 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a *ngIf="isHandset$ | async" routerLink="/news">
-        <img class="im-here-img" src="../../assets/img/logo.png" alt="img"/>
+        <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
         <p>I'm here</p>
       </a>
+
       <div class="spacer"></div>
-      <div class="btn-login">
-        <a routerLink='login'>
-          <button mat-raised-button
-                  
-                  color="secondary">Login
-          </button>
-        </a>
+      <a routerLink='login'>
+        <button *ngIf="!loggedIn" mat-raised-button color="secondary">Login</button>
+      </a>
+      <a *ngIf="!loggedIn" routerLink='register'>
+        <button mat-raised-button color="secondary">Sign up</button>
+      </a>
+      <div class="logout-icon" (click)="logout()" *ngIf="loggedIn">
+        <mat-icon>power_settings_new</mat-icon>
       </div>
-      <img [matMenuTriggerFor]="menu" class="user-profile" src="assets/img/User_Avatar-04-512.png">
+      <img *ngIf="loggedIn" [matMenuTriggerFor]="menu" class="user-profile" src="assets/img/User_Avatar-04-512.png">
       <mat-menu class="menu-profile" #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>publish</mat-icon>
+          <span>Share</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>mode_comment</mat-icon>
+          <span>Comment</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
         <a mat-menu-item>
           <i class="material-icons">face</i>
           My name
@@ -76,7 +84,7 @@
       <!-- Add new post button -->
       <div class="plus-button-container">
         <a routerLink='postCreation'>
-          <button *ngIf="!_router.url.includes('postCreation')" class="plus-button"></button>
+          <button *ngIf="!_router.url.includes('postCreation') && loggedIn" class="plus-button"></button>
         </a>
       </div>
     </div>
