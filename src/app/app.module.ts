@@ -31,13 +31,19 @@ import {PostCreationService} from './post-creation/post-creation.service';
 import {PostCreationModule} from './post-creation/post-creation.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './dashboard/admin/admin.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
     BreadcrumbComponent,
-    MainNavComponent
+    MainNavComponent,
+    RegisterComponent,
+    AdminComponent,
+    PageNotFoundComponent
   ],
   imports: [
     HttpClientModule,
