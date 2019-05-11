@@ -1,38 +1,42 @@
-<mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="login-form">
-      <table class="login-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="login-full-width">
-              <input matInput placeholder="Username" [(ngModel)]="form.username" #username="ngModel" name="username" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="form.password" #password="ngModel" name="password" required>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </form>
-    <div *ngIf="show">
-      <mat-spinner
-        class="login-margin"
-        [color]="color"
-        [mode]="mode"
-        [value]="seconds">
-      </mat-spinner><!-- -->
-    </div>
-  </mat-card-content>
-  <p style="color: red">{{ message }}</p>
-  <mat-card-actions>
-    <button mat-raised-button ng-click="showDetails = ! showDetails" (click)="login()" color="primary">Login</button>
-  </mat-card-actions>
+<main class="root__container" [ngClass]="{'root__container-dark': darkModeActive}">
+  <main class="main__container">
+    
+    <div class="main__container">
+      <div class="login-card">
+        <main class="login-content">
+          <span class="login-header">Let's find me</span>
+          <form class="login-form">
 
-</mat-card>
+
+            <input class="login-input" matInput placeholder="Username" [(ngModel)]="form.username" #username="ngModel"
+              name="username" required>
+
+            <input class="login-input" matInput placeholder="Password" [(ngModel)]="form.password" #password="ngModel"
+              name="password" required>
+            <button class="login-btn" mat-raised-button ng-click="showDetails = ! showDetails" (click)="login()"
+              color="primary">Login</button>
+            <div *ngIf="show">
+              <mat-spinner class="login-margin" [color]="color" [mode]="mode" [value]="seconds">
+              </mat-spinner><!-- -->
+            </div>
+          </form>
+          <div class="signup-link-wrapper">
+            <span class="signup-notice">Don't have an account?</span><br>
+            <a class="signup-link" routerLink="/signup">Sign up</a>
+          </div>
+
+        </main>
+
+        <div class="login-aside">
+          <div class="login-aside-overlay"></div>
+          <h1 class="login-welcome-text">Welcome Back!</h1>
+          <hr class="login-aside-hr">
+        </div>
+
+      </div>
+      <p style="color: red">{{ message }}</p>
+
+
+    </div>
+  </main>
+</main>

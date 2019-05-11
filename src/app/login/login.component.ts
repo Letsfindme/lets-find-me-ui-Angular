@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { first } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { AuthLoginInfo } from '../models/login-info';
-import { resolve } from 'dns';
-import { promise } from 'protractor';
+
 // noinspection JSAnnotator
 @Component({
   selector: 'app-login',
@@ -15,7 +13,8 @@ import { promise } from 'protractor';
 })
 export class LoginComponent {
   form: any = {};
-  isLoggedIn = false;
+  @Output() emitLoggedUser = new EventEmitter<boolean>();
+  isLoggedIn = true;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
@@ -33,6 +32,7 @@ export class LoginComponent {
   password: string;
 
   constructor(private tokenStorage: TokenStorageService,
+
     private router: Router,
     public dialog: MatDialog,
     private authService: AuthService) {
@@ -42,6 +42,7 @@ export class LoginComponent {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+      this.router.navigate(['postCreation'])
     }
   }
 
@@ -49,30 +50,29 @@ export class LoginComponent {
     this.show = true;
     //this.intervalId = setInterval(() => this.counte(), 10);
     this.counte();
-    this.setTimeou();
+    this.attemptAuth();
   }
 
-  setTimeou() {
+  attemptAuth() {
     setTimeout(() => {
       this.loginInfo = new AuthLoginInfo(
         this.form.username,
         this.form.password);
-
       this.authService.attemptAuth(this.loginInfo).subscribe(
         data => {
+          this.isLoggedIn = true;
+          this.isLoginFailed = false;
+          this.emitLoggedUser.emit(this.isLoggedIn);
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUsername(data.username);
           this.tokenStorage.saveAuthorities(data.authorities);
-
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
           this.roles = this.tokenStorage.getAuthorities();
-          this.router.navigate(['user']);
+          this.router.navigate(['postCreation']);
         },
         error => {
-          console.log(error);
-          this.errorMessage = error.error.message;
+          this.isLoggedIn = false;
           this.isLoginFailed = true;
+          this.errorMessage = error.error.message;
         }
       )
     }, 1000);

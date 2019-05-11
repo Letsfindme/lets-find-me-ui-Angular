@@ -1,4 +1,3 @@
-
 .sidenav-container {
   position: absolute !important;
   top: 0;
@@ -7,17 +6,15 @@
   right: 0;
 }
 
-mat-sidenav > div{
-  display: flex;
-  flex-direction: column;
-}
-
 .sidenav {
   width: 250px;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
   border-right: none;
 }
-
+.nav-icon{
+  margin: 0 5px;
+  width: 80px;
+}
 .sidenav .mat-toolbar {
   margin-bottom: 10px;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
@@ -54,6 +51,7 @@ mat-sidenav > div{
 }
 
 .spacer{
+  display: flex;
   flex: 1 1 auto;
 }
 
@@ -80,6 +78,11 @@ i.material-icons{
 .setting,
 .Categories{
   border-left:4px solid #393982;
+}
+.setting{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 .container{
   display: flex;

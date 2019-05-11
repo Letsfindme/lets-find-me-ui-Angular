@@ -21,16 +21,18 @@ export class AuthService {
 
   constructor(private tokenStorage: TokenStorageService,private http: HttpClient) {
   }
-  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  
+  private loggedIn = new BehaviorSubject<boolean>(false);
   
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.loggedIn.next(true);
     }
   }
+
   get isLoggedIn() {
     this.ngOnInit();
-    return this.loggedIn.asObservable(); // {2}
+    return this.loggedIn.asObservable(); 
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
@@ -39,5 +41,10 @@ export class AuthService {
 
   signUp(info: SignUpInfo): Observable<string> {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
+  }
+
+  logout() {
+    sessionStorage.clear()
+    //return  window.location.reload();
   }
 }

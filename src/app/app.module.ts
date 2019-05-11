@@ -34,9 +34,13 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginLayoutComponent,
+    HomeLayoutComponent,
     LoginComponent,
     UserComponent,
     BreadcrumbComponent,

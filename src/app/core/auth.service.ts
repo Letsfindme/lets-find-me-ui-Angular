@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   attemptAuth(username: string, password: string) {
-    return this.http.post<any>(`http://localhost:8080/token/generate-token`, {username: username, password: password})
+    return this.http.post<any>(`http://localhost:8080/token/generate-token`, { username: username, password: password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
@@ -27,7 +27,8 @@ export class AuthService {
       }));
   }
   logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    sessionStorage.clear();
+    console.log('authervice logout')
+    //localStorage.removeItem('currentUser');
   }
 }
