@@ -15,19 +15,19 @@
       <div><a>Categories</a></div>
     </div>
     <mat-nav-list class="Categories">
-      <a mat-list-item href="#"><i class="fas fa-hotel"></i>Hotel</a>
-      <a mat-list-item href="#"><i class="fas fa-door-open"></i>Housing</a>
-      <a mat-list-item href="#"><i class="fas fa-utensils"></i>Restaurant</a>
-      <a mat-list-item href="#"><i class="fas fa-plane-departure"></i>Flight</a>
+      <a routerLinkActive="active" [routerLink]="[ '/postCreation' ]" mat-list-item><i class="fas fa-hotel"></i>Hotel</a>
+      <a routerLinkActive="active" mat-list-item><i class="fas fa-door-open"></i>Housing</a>
+      <a routerLinkActive="active" mat-list-item><i class="fas fa-utensils"></i>Restaurant</a>
+      <a routerLinkActive="active" mat-list-item><i class="fas fa-plane-departure"></i>Flight</a>
     </mat-nav-list>
 
     <hr>
     <div class="spacer"></div>
 
     <mat-nav-list class="setting">
-      <a mat-list-item href="#"><i class="fas fa-user-cog"></i>Setting</a>
-      <a mat-list-item href="#"><i class="fas fa-star"></i>Rate us</a>
-      <a mat-list-item href="#"><i class="fas fa-envelope"></i>Contact Us!</a>
+      <a mat-list-item><i class="fas fa-user-cog"></i>Setting</a>
+      <a mat-list-item><i class="fas fa-star"></i>Rate us</a>
+      <a mat-list-item><i class="fas fa-envelope"></i>Contact Us!</a>
     </mat-nav-list>
   </mat-sidenav>
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {PostCreationComponent} from './post-creation.component';
-import {PostCreationService} from './post-creation.service';
+import {PostService} from './post.service';
 import {FormArray, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatCardModule,
@@ -12,8 +12,16 @@ import {
   MatIconModule, MatInputModule,
   MatOptionModule,
   MatRadioModule,
-  MatSelectModule
+  MatSelectModule,
+  MatButtonModule,
+  MatDialogModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatTableModule,
+  MatRippleModule
 } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -27,12 +35,25 @@ import {
       MatSelectModule,
       MatIconModule,
       MatInputModule,
-      MatCardModule
+      MatCardModule,
+      //material
+      MatButtonModule,
+      MatDialogModule,
+      MatToolbarModule,
+      MatSidenavModule,
+      MatIconModule,
+      MatListModule,
+      MatCardModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatRippleModule,
+      MatTableModule,
+      HttpClientModule
     ],
     declarations: [ PostCreationComponent ],
     exports: [
       PostCreationComponent
     ],
-    providers: [ PostCreationService],
+    providers: [ PostService],
 })
 export class PostCreationModule { }

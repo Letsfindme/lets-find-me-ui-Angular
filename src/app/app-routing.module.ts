@@ -10,6 +10,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -28,11 +29,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'postCreation',
+    path: 'posts',
     component: HomeLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: PostCreationComponent }
+      { path: '', component: PostDetailsComponent }
     ]
   },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },

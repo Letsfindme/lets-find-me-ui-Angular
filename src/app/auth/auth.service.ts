@@ -6,6 +6,7 @@ import { JwtResponse } from '../models/jwt-response';
 import { AuthLoginInfo } from '../models/login-info';
 import { SignUpInfo } from '../models/signup-info';
 import { TokenStorageService } from './token-storage.service';
+import { stringify } from 'querystring';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,15 +16,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  
+
   private loginUrl = 'http://localhost:8080/api/auth/signin';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
-
-  constructor(private tokenStorage: TokenStorageService,private http: HttpClient) {
+  private postUrl = 'http://localhost:8080/posts/create';
+  constructor(private tokenStorage: TokenStorageService,
+    private http: HttpClient) {
   }
-  
+
   private loggedIn = new BehaviorSubject<boolean>(false);
-  
+
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.loggedIn.next(true);
@@ -32,7 +34,7 @@ export class AuthService {
 
   get isLoggedIn() {
     this.ngOnInit();
-    return this.loggedIn.asObservable(); 
+    return this.loggedIn.asObservable();
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
@@ -43,8 +45,22 @@ export class AuthService {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
   }
 
+  create(post: any): Observable<string> {
+    console.log('auth sercive post is:' + stringify(post))
+    return this.http.post<string>(this.postUrl, post, httpOptions)
+  }
+
   logout() {
     sessionStorage.clear()
     //return  window.location.reload();
+  }
+
+  isTokenExpired(token?: string): boolean {
+    //if(!token) token = this.getToken();
+    if (!token) return true;
+
+    //const date = this.getTokenExpirationDate(token);
+    //if(date === undefined) return false;
+    //return !(date.valueOf() > new Date().valueOf());
   }
 }

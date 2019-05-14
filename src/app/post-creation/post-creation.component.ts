@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import 'rxjs/add/operator/map';
-import {PostCreationService} from './post-creation.service';
-import {Post} from '../models/post.model';
-import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { PostService } from './post.service';
+import { Post } from '../models/post.model';
+import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { TokenStorageService } from '../auth/token-storage.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-post-creation',
@@ -13,25 +15,34 @@ import {FormControl, FormGroup, FormBuilder } from '@angular/forms';
 export class PostCreationComponent implements OnInit {
   post: Post;
   postForm: FormGroup;
+  postContent: FormArray
+
 
   constructor(
-    private postCrationService: PostCreationService,
-    private fb: FormBuilder
+    private postCrationService: PostService,
+    private fb: FormBuilder,
+    private tokenStorage: TokenStorageService
   ) {
     this.post = new Post();
     this.postForm = this.fb.group({
-      hideRequired: false,
-      floatLabel: 'auto'
+      'title': '',
+      'category': '',
+      'postContent': this.fb.array([{text:""}]),
+      'username': ''
     });
   }
 
   ngOnInit() {
   }
 
-  onSubmit(): void {
+  async onSubmit() {
+    this.postForm.get('username').setValue(this.tokenStorage.getUsername());
+    this.createPost(this.postForm.value);
   }
-  createPost() {
-    this.postCrationService.createPost(this.post)
-      .subscribe(post => this.post = post);
+
+  createPost(postForm) {
+    console.log('post component createPost', JSON.stringify(postForm))
+    this.postCrationService.createPost(postForm).subscribe(post=>
+      console.log('retour' +post));
   }
 }

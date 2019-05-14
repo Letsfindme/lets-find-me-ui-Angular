@@ -3,9 +3,9 @@ import {User} from './user.model';
 export class Post {
   id?: string;
   title: string;
-  postContents: string;
+  contents: string;
   category: string;
-  user: User;
+  username: string;
   commentCount?: number;
   likeCount?: number;
   liked?: boolean;

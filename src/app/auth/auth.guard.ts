@@ -8,21 +8,27 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  
+
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
-  
+  ) { }
+
   canActivate(
+
+    // if (!this.authService.isTokenExpired()) {
+    // return true;
+    //}
+
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
+
   ): Observable<boolean> {
     return this.authService.isLoggedIn         // {1}
       .pipe(
         take(1),                              // {2} 
         map((isLoggedIn: boolean) => {         // {3}
-          if (!isLoggedIn){
+          if (!isLoggedIn) {
             this.router.navigate(['/login']);  // {4}
             return false;
           }
