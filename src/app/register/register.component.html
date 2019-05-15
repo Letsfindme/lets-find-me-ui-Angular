@@ -1,0 +1,59 @@
+<div *ngIf="isSignedUp; else signupForm">
+  Your registration is successful. Please login!
+</div>
+
+<ng-template #signupForm>
+  <div class="main__container">
+    <div class="register-card">
+      <main class="login-content">
+        <mat-card-header>
+          <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+
+        <form class="registration" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <mat-form-field>
+            <mat-label>Your name</mat-label>
+            <input matInput name="name" [(ngModel)]="form.name" #name="ngModel" required />
+            <div *ngIf="f.submitted && name.invalid">
+              <div *ngIf="name.errors.required">Name is required</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput name="username" [(ngModel)]="form.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && username.invalid">
+              <div *ngIf="username.errors.required">Username is required</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+            <div *ngIf="f.submitted && email.invalid">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">Email must be a valid email address</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" [(ngModel)]="form.password" #password="ngModel" required
+              minlength="6" />
+            <div *ngIf="f.submitted && password.invalid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Register</button>
+          <div *ngIf="f.submitted && isSignUpFailed" style="color: red">
+            Signup failed!<br />{{errorMessage}}
+          </div>
+        </form>
+
+        <div class="signup-link-wrapper">
+          <span class="signup-notice">Don't have an account?</span><br>
+          <a class="signup-link" routerLink="/signup">Sign up</a>
+        </div>
+
+      </main>
+    </div>
+  </div>
+</ng-template>

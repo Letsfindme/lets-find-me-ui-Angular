@@ -1,17 +1,20 @@
-
 .sidenav-container {
-  height: 100%;
-}
-
-mat-sidenav > div{
-  display: flex;
-  flex-direction: column;
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .sidenav {
   width: 250px;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
   border-right: none;
+}
+
+.nav-icon {
+  margin: 0 5px;
+  width: 80px;
 }
 
 .sidenav .mat-toolbar {
@@ -27,11 +30,12 @@ mat-sidenav > div{
   z-index: 1;
 }
 
-.im-here-img{
+.im-here-img {
   margin: 0 20px;
   width: 40px;
 }
-.mat-toolbar a{
+
+.mat-toolbar a {
   height: 40px;
   display: flex;
   align-items: center;
@@ -40,7 +44,7 @@ mat-sidenav > div{
 }
 
 .user-profile {
-  padding:0 10px;
+  padding: 0 10px;
   float: right;
   width: 55px;
 }
@@ -49,11 +53,12 @@ mat-sidenav > div{
   float: right;
 }
 
-.spacer{
+.spacer {
+  display: flex;
   flex: 1 1 auto;
 }
 
-.Categories-text{
+.Categories-text {
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -62,27 +67,35 @@ mat-sidenav > div{
   color: #292961;
 }
 
-.Categories-icon{
+.Categories-icon {
   flex: 0 0 40px;
   font-size: 2rem;
 }
 
 mat-nav-list a i,
-i.material-icons{
-  margin:0 30px 0 10px;
+i.material-icons {
+  margin: 0 30px 0 10px;
   width: 20px;
 }
 
 .setting,
-.Categories{
-  border-left:4px solid #393982;
+.Categories {
+  border-left: 4px solid #393982;
 }
-.container{
+
+.setting {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   margin: 10px;
 }
-.menu-profile{
+
+.menu-profile {
   width: 200px;
 }
 
@@ -91,9 +104,18 @@ i.material-icons{
   bottom: 10px;
   right: 10px;
 }
+
 .mat-menu-item {
   display: flex !important;
   align-items: center;
+}
+
+.active{
+  background-color: rgb(251, 255, 218);
+  color: #292961;
+  font-weight: bold;
+  font-size: 1.5rem;
+  animation: fadein 1s ease-in-out;
 }
 .plus-button {
   border: 2px solid #393982;
@@ -103,6 +125,7 @@ i.material-icons{
   width: 2.5em;
   border-radius: 999px;
   position: relative;
+
   &:after,
   &:before {
     content: "";
@@ -113,21 +136,24 @@ i.material-icons{
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   &:before {
     height: 1em;
     width: 0.2em;
   }
+
   &:after {
     height: 0.2em;
     width: 1em;
   }
+
   &:hover {
     transform: rotate(0.5turn);
     transition: 0.5s;
   }
+
   &:hover:after,
   &:hover:before {
     background-color: #7979fd;
   }
 }
-

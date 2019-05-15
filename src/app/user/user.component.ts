@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
 import {UserServiceService} from '../user-service.service';
-import {User} from './user.model';
+import {User} from '../models/user.model';
 
 @Component({
   selector: 'app-user',

@@ -1,12 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav"
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="!(isHandset$ | async)">
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+
     <mat-toolbar color="primary">
       <a routerLink="/news">
-        <img class="im-here-img" src="../../assets/img/logo.png" alt="img"/>
-        <p>I'm here</p>
+        <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
+        <p>Find me</p>
       </a>
     </mat-toolbar>
     <div class="Categories-text">
@@ -16,45 +15,58 @@
       <div><a>Categories</a></div>
     </div>
     <mat-nav-list class="Categories">
-      <a mat-list-item href="#"><i class="fas fa-hotel"></i>Hotel</a>
-      <a mat-list-item href="#"><i class="fas fa-door-open"></i>Housing</a>
-      <a mat-list-item href="#"><i class="fas fa-utensils"></i>Restaurant</a>
-      <a mat-list-item href="#"><i class="fas fa-plane-departure"></i>Flight</a>
+      <a routerLinkActive="active" [routerLink]="[ '/postCreation' ]" mat-list-item><i class="fas fa-hotel"></i>Hotel</a>
+      <a routerLinkActive="active" mat-list-item><i class="fas fa-door-open"></i>Housing</a>
+      <a routerLinkActive="active" mat-list-item><i class="fas fa-utensils"></i>Restaurant</a>
+      <a routerLinkActive="active" mat-list-item><i class="fas fa-plane-departure"></i>Flight</a>
     </mat-nav-list>
+
     <hr>
     <div class="spacer"></div>
+
     <mat-nav-list class="setting">
-      <a mat-list-item href="#"><i class="fas fa-user-cog"></i>Setting</a>
-      <a mat-list-item href="#"><i class="fas fa-star"></i>Rate us</a>
-      <a mat-list-item href="#"><i class="fas fa-envelope"></i>Contact Us!</a>
+      <a mat-list-item><i class="fas fa-user-cog"></i>Setting</a>
+      <a mat-list-item><i class="fas fa-star"></i>Rate us</a>
+      <a mat-list-item><i class="fas fa-envelope"></i>Contact Us!</a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <a *ngIf="isHandset$ | async" routerLink="/news">
-        <img class="im-here-img" src="../../assets/img/logo.png" alt="img"/>
+        <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
         <p>I'm here</p>
       </a>
+
       <div class="spacer"></div>
-      <div class="btn-login">
-        <a routerLink='login'>
-          <button mat-raised-button
-                  (click)="loginPage()"
-                  color="secondary">Login
-          </button>
-        </a>
-      </div>
-      <img [matMenuTriggerFor]="menu" class="user-profile" src="assets/img/User_Avatar-04-512.png">
+
+
+      <button *ngIf="!isLoggedIn" class="nav-icon" routerLink='login' mat-raised-button color="secondary">Login</button>
+
+      <button *ngIf="!isLoggedIn" class="nav-icon" routerLink='register' mat-raised-button color="secondary">Sign
+        up</button>
+
+      <button *ngIf="isLoggedIn" (click)="logout()" mat-raised-button>
+        <mat-icon>power_settings_new</mat-icon> Logout
+      </button>
+      <img *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" class="user-profile" src="assets/img/User_Avatar-04-512.png">
       <mat-menu class="menu-profile" #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>publish</mat-icon>
+          <span>Share</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>mode_comment</mat-icon>
+          <span>Comment</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
         <a mat-menu-item>
           <i class="material-icons">face</i>
           My name
@@ -76,10 +88,10 @@
       <!-- Add new post button -->
       <div class="plus-button-container">
         <a routerLink='postCreation'>
-          <button *ngIf="!_router.url.includes('postCreation')" class="plus-button"></button>
+          <button *ngIf="!_router.url.includes('postCreation') && isLoggedIn" class="plus-button"></button>
         </a>
       </div>
-    </div>
 
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

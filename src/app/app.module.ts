@@ -24,28 +24,44 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UserServiceService} from './user-service.service';
-import { Interceptor } from './core/inteceptor.service';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { PostCreationComponent } from './post-creation/post-creation.component';
-import {PostCreationService} from './post-creation/post-creation.service';
+import {PostService} from './post-creation/post.service';
 import {PostCreationModule} from './post-creation/post-creation.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import { httpInterceptorProviders, AuthInterceptor } from './auth/auth-interceptor';
+import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './dashboard/admin/admin.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import { PostShowComponent } from './post-show/post-show.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    LoginLayoutComponent,
+    HomeLayoutComponent,
     LoginComponent,
     UserComponent,
     BreadcrumbComponent,
-    MainNavComponent
+    MainNavComponent,
+    RegisterComponent,
+    AdminComponent,
+    PageNotFoundComponent,
+    PostDetailsComponent,
+    PostShowComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    LayoutModule,
+    //material
     MatButtonModule,
     MatDialogModule,
-    LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
@@ -62,10 +78,9 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     MatMenuModule
   ],
   providers: [
-    HttpClientModule,
-    PostCreationService,
-    UserServiceService,
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    PostService,
+    UserServiceService, 
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

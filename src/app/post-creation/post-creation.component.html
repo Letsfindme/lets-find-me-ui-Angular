@@ -1,36 +1,30 @@
-
-
 <mat-card class="post-card">
-  <form class="post-container" [formGroup]="postForm">
-    <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
-    <div>
-      <label>Float label: </label>
-      <mat-radio-group formControlName="floatLabel">
-        <mat-radio-button value="auto">Auto</mat-radio-button>
-        <mat-radio-button value="always">Always</mat-radio-button>
-        <mat-radio-button value="never">Never</mat-radio-button>
-      </mat-radio-group>
+  <form class="post-container" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="post-header">
+      <img class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" alt="img" />
+      <mat-form-field [hideRequiredMarker]="postForm.value.hideRequired">
+        <input matInput formControlName="title" placeholder="Post title" required>
+      </mat-form-field>
     </div>
+    <div class="post-content">
+      <mat-form-field [hideRequiredMarker]="postForm.value.hideRequired">
+        <mat-select required formControlName="category">
+          <mat-option>-- None --</mat-option>
+          <mat-option value="ٌrestaurants">ٌRestaurants</mat-option>
+          <mat-option value="housing">Housing</mat-option>
+          <mat-option value="hotels">Hotels</mat-option>
+        </mat-select>
+        <mat-label>
+          <mat-icon>favorite</mat-icon> <b> Choose category</b> <i> here</i>
+        </mat-label>
+      </mat-form-field>
+      <!--<mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>-->
+      <mat-form-field formGroupName="postContent">
+        <mat-label>Start asking your question here :)</mat-label>
+        <textarea formControlName="text" rows="4" matInput placeholder="jé faim!!!! jépa darjent!!!!!!"></textarea>
+      </mat-form-field>
+    </div>
+    <button class="find-button" mat-raised-button color="primary" type="submit">find answers</button>
   </form>
 
-  <mat-form-field
-    [hideRequiredMarker]="postForm.value.hideRequired"
-    [floatLabel]="postForm.value.floatLabel">
-    <input matInput placeholder="Simple placeholder" required>
-  </mat-form-field>
-
-  <mat-form-field [floatLabel]="postForm.value.floatLabel">
-    <mat-label>Both a label and a placeholder</mat-label>
-    <input matInput placeholder="Simple placeholder">
-  </mat-form-field>
-
-  <mat-form-field
-    [hideRequiredMarker]="postForm.value.hideRequired"
-    [floatLabel]="postForm.value.floatLabel">
-    <mat-select required>
-      <mat-option>-- None --</mat-option>
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-    <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
-  </mat-form-field>
 </mat-card>
