@@ -1,25 +1,52 @@
-import {Component} from '@angular/core';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.css']
+  styleUrls: ['./main-nav.component.scss'],
+  //encapsulation: ViewEncapsulation.None,
 })
 export class MainNavComponent {
-
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  TOKEN_KEY = 'AuthToken';
+  @Input() isLoggedIn: boolean;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
     .pipe(
       map(result => result.matches)
     );
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver) {
+  constructor(public _router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService) { }
+
+  ngOnInit() {
+    this.getToken();
+    //this.isHandset$.subscribe(isHandset => console.log(isHandset));
   }
 
-  loginPage(): void {
-      this.router.navigate(['login']);
+  public getToken() {
+    if (sessionStorage.getItem(this.TOKEN_KEY)) {
+      return this.isLoggedIn = true;
+    } else {
+      return this.isLoggedIn = false;
     }
+  }
+
+  get isLogged(): boolean {
+    return this.isLoggedIn;
+  }
+  
+  set isLogged(boolean: boolean) {
+    console.log('nav set logged')
+    this.isLoggedIn = true;
+  }
+
+  logout() {
+    this._router.navigateByUrl('/login');
+    this.authService.logout();
+  }
 }

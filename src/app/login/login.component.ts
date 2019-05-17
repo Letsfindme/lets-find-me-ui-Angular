@@ -1,20 +1,26 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
-import {AuthService} from '../core/auth.service';
-import {TokenStorage} from '../core/token.storage';
-import {HttpErrorResponse} from '@angular/common/http';
-import {first} from 'rxjs/operators';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { AuthService } from '../auth/auth.service';
+import { TokenStorageService } from '../auth/token-storage.service';
+import { AuthLoginInfo } from '../models/login-info';
 
 // noinspection JSAnnotator
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  form: any = {};
+  @Output() emitLoggedUser = new EventEmitter<boolean>();
+  isLoggedIn = true;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  private loginInfo: AuthLoginInfo;
 
-  loading: boolean;
+  loading: boolean = false;
   color = 'accent';
   mode = 'determinate';
   intervalId: NodeJS.Timer;
@@ -22,131 +28,70 @@ export class LoginComponent {
   message;
   show = false;
   error = '';
-
-  constructor(private router: Router,
-              public dialog: MatDialog,
-              private authService: AuthService,
-              private token: TokenStorage) {
-  }
-
   username: string;
   password: string;
 
+  constructor(private tokenStorage: TokenStorageService,
 
-  login(): void {
-    this.loading = true;
-    this.intervalId = setInterval(() => this.counte(), 10);
+    private router: Router,
+    public dialog: MatDialog,
+    private authService: AuthService) {
+  }
+
+  ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getAuthorities();
+      this.router.navigate(['posts'])
+    }
+  }
+
+  login() {
+    this.show = true;
+    //this.intervalId = setInterval(() => this.counte(), 10);
+    this.counte();
+    this.attemptAuth();
+  }
+
+  attemptAuth() {
     setTimeout(() => {
-      console.log("  this.loading !== true ");
-      this.authService.attemptAuth(this.username, this.password)
-        .pipe(first())
-        .subscribe(
-          data => {
-            this.router.navigate(['user']);
-          },
-          error => {
-            this.error = error;
-            this.loading = false;
-          });
-    },1000);
-}
+      this.loginInfo = new AuthLoginInfo(
+        this.form.username,
+        this.form.password);
+      this.authService.attemptAuth(this.loginInfo).subscribe(
+        data => {
+          this.isLoggedIn = true;
+          this.isLoginFailed = false;
+          this.emitLoggedUser.emit(this.isLoggedIn);
+          this.tokenStorage.saveToken(data.accessToken);
+          this.tokenStorage.saveUsername(data.username);
+          this.tokenStorage.saveAuthorities(data.authorities);
+          this.roles = this.tokenStorage.getAuthorities();
+          this.router.navigate(['posts']);
+        },
+        error => {
+          this.isLoggedIn = false;
+          this.isLoginFailed = true;
+          this.errorMessage = error.error.message;
+        }
+      )
+    }, 1000);
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
 
   counte() {
-    this.show = true;
-    while (this.seconds < 100) {
+    setTimeout(() => {
       this.seconds++;
-      console.log(this.seconds);
-      if (this.seconds == 100) {
-        this.loading = false;
-        console.log("  this.loading !== true ");
-      }
-      return;
-    }
-  }
-}
-
-    /*
-    this.show = false;
-
-    this.authService.attemptAuth(this.username, this.password)
-      .subscribe(
-      data => {
-        this.token.saveToken(data.token);
-        this.router.navigate(['user']);
-      },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log("Client-side error occured.");
-          } else {
-            console.log("Server-side error occured.");
-          }
-        }
-    );
-
-  }
-
-}
-
-
-/*
-
-if (this.username === 'admin' && this.password === 'admin') {
-        this.router.navigate(['user']);
+      if (this.seconds < 100) {
+        this.counte();
       } else {
-        this.message = 'Invalid credentials';
+        this.loading = false;
+        this.show = false;
+        this.seconds = 0;
       }
-
- this.intervalId = setInterval(() => this.timer(), 10);
-
-timer() {
-    console.log(this.seconds);
-    this.seconds--;
-    if (this.seconds === 0) {
-      clearInterval(this.intervalId);
-      console.log(this.seconds);
-      return;
-    }
+    }, 1);
   }
-
-const maxLoops = 50;
-let counter = 0;
-
-(function next() {
-  if (counter++ > maxLoops) {
-    return;
-  }
-
-  setTimeout(function () {
-    console.log(this.value);
-    this.value++;
-    next();
-  }, 10);
-})();
 }
-}
-
-
-
-for ( this.value ; this.value <= 90; this.value++) {}
-return new Promise(resolve => {
-setTimeout(() => {
-resolve(x);
-}, 2000);
-});
-
-
-
-while (this.value <= 100) {
-setTimeout(500);
-this.value += 1;
-}
-if (this.username === 'admin' && this.password === 'admin') {
-this.router.navigate(['user']);
-} else {
-alert('Invalid credentials');
-}
-
-*/
-
-
-
