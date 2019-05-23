@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 import { PostService } from './post.service';
-import { Post } from '../models/post.model';
+import { Post } from '../../models/post.model';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { TokenStorageService } from '../auth/token-storage.service';
-import { AuthService } from '../auth/auth.service';
+import { TokenStorageService } from '../../auth/token-storage.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-post-creation',

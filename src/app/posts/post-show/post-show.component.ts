@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../posts/post-creation/post.service';
-import { Post } from '../models/post.model';
+import { Post } from '../../models/post.model';
+import { PostService } from '../post-creation/post.service';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-post-show',
+  templateUrl: './post-show.component.html',
+  styleUrls: ['./post-show.component.scss']
 })
-export class HomePageComponent implements OnInit {
-  
-  posts: Post[];
+export class PostShowComponent implements OnInit {
 
+  posts: Post[];
+  
   constructor(private postService: PostService) {
     this.getPosts();
   }
@@ -25,5 +25,4 @@ export class HomePageComponent implements OnInit {
       err => { console.log(err) }
     );
   }
-
 }
