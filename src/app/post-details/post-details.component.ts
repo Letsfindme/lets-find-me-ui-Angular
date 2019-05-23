@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../models/post.model';
 import { PostService } from '../post-creation/post.service';
 import { Observable } from 'rxjs';
@@ -10,10 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class PostDetailsComponent implements OnInit {
 
-  posts: Post[];
+ @Input() post: Post;
 
-  constructor(private postService: PostService) { 
-    this.getPosts();
+  constructor(private postService: PostService) {
   }
 
   ngOnInit() {
@@ -21,10 +20,10 @@ export class PostDetailsComponent implements OnInit {
 
   getPosts() {
     return this.postService.getPostByUserId().subscribe(
-      posts => { this.posts = posts,console.log(JSON.stringify(posts));
+      posts => { this.post = posts,console.log(JSON.stringify(posts));
        },
       err => { console.log(err) }
     );
-
   }
+
 }
