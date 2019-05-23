@@ -38,7 +38,7 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
-import { PostDetailsComponent } from './posts/post-details/post-details.component';
+import { PostCardComponent } from './posts/post-card/post-card.component';
 import { PostShowComponent } from './posts/post-show/post-show.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RatingComponent } from './rating/rating.component';
@@ -55,7 +55,7 @@ import { RatingComponent } from './rating/rating.component';
     RegisterComponent,
     AdminComponent,
     PageNotFoundComponent,
-    PostDetailsComponent,
+    PostCardComponent,
     PostShowComponent,
     HomePageComponent,
     RatingComponent

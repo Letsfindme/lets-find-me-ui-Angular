@@ -10,7 +10,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
-import { PostDetailsComponent } from './posts/post-details/post-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PostShowComponent } from './posts/post-show/post-show.component';
 
