@@ -14,7 +14,10 @@ import {
   MatProgressSpinnerModule,
   MatTableModule,
   MatDialogModule,
-  MatMenuModule
+  MatMenuModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +40,8 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostShowComponent } from './post-show/post-show.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,9 @@ import { PostShowComponent } from './post-show/post-show.component';
     AdminComponent,
     PageNotFoundComponent,
     PostDetailsComponent,
-    PostShowComponent
+    PostShowComponent,
+    HomePageComponent,
+    RatingComponent
   ],
   imports: [
     HttpClientModule,
@@ -72,6 +79,9 @@ import { PostShowComponent } from './post-show/post-show.component';
     MatInputModule,
     MatRippleModule,
     MatTableModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatCheckboxModule,
     PostCreationModule,
     FormsModule,
     ReactiveFormsModule,

@@ -14,7 +14,7 @@ import { AuthService } from '../auth/auth.service';
 export class MainNavComponent {
   TOKEN_KEY = 'AuthToken';
   @Input() isLoggedIn: boolean;
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.HandsetPortrait, Breakpoints.TabletPortrait])
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset,Breakpoints.Tablet])
     .pipe(
       map(result => result.matches)
     );
@@ -25,7 +25,7 @@ export class MainNavComponent {
 
   ngOnInit() {
     this.getToken();
-    //this.isHandset$.subscribe(isHandset => console.log(isHandset));
+    console.log(Breakpoints);
   }
 
   public getToken() {

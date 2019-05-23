@@ -42,7 +42,7 @@ export class LoginComponent {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
-      this.router.navigate(['posts'])
+      this.router.navigate([''])
     }
   }
 
@@ -67,7 +67,7 @@ export class LoginComponent {
           this.tokenStorage.saveUsername(data.username);
           this.tokenStorage.saveAuthorities(data.authorities);
           this.roles = this.tokenStorage.getAuthorities();
-          this.router.navigate(['posts']);
+          this.router.navigate(['']);
         },
         error => {
           this.isLoggedIn = false;

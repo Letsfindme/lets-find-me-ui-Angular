@@ -11,9 +11,16 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  {
+    path: '',
+    component: HomeLayoutComponent,
+    children:[
+      {path: '', component: HomePageComponent}
+    ]
+  },
   {
     path: 'login',
     component: LoginLayoutComponent,
