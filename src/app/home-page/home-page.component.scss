@@ -1,0 +1,83 @@
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  height: 100%;
+  box-sizing: content-box;
+}
+
+@media(max-width: 839.99px) {
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: content-box;
+  }
+}
+
+.container-left,
+.container-right {
+  padding-top: 5vh;
+}
+
+.container-left {
+  display: flex;
+  background-image: url("../../assets/img/vw.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mat-card-heade {}
+
+.post-grid {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 2%;
+  flex: 1 0 auto;
+
+}
+
+.search-card {
+  width: 377px;
+  height: 400px;
+  margin: auto;
+}
+
+.form-guid {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-card-footer button {
+  color: aliceblue;
+  background-color: #FF5A5F;
+  float: right;
+  margin-right: 2vw;
+}
+
+.check-box {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 0.5px solid rgba(0, 0, 0, .87);
+}
+
+.text-me {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FF5A5F;
+  margin: 10vh auto 0 3vw;
+}
+
+.text-guid {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FF5A5F;
+}

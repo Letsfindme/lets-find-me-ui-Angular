@@ -1,0 +1,49 @@
+<div class="home-container">
+
+  <!--Background Image-->
+  <div class="container-left">
+    <mat-card class="search-card">
+      <mat-card-header class="text-guid">
+        <p>Find Your Guid</p>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="form-guid">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="What're you looking for?" value="">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Select Category">
+              <mat-option value="option">Restaurant</mat-option>
+              <mat-option value="option">Hotel</mat-option>
+              <mat-option value="option">Option</mat-option>
+              <mat-option value="option">Option</mat-option>
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Paris" value="City">
+          </mat-form-field>
+          <div class="check-box">
+            <mat-checkbox [formControl]="">Disable select</mat-checkbox>
+            <mat-checkbox [formControl]="">Disable select</mat-checkbox>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <button mat-raised-button>Search</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <div class="container-right">
+    <div class="text-me">
+      Check out Best ME articles
+    </div>
+    <div class="post-grid">
+      <div *ngFor="let post of posts">
+        <app-post-card [post]="post"></app-post-card>
+      </div>
+    </div>
+  </div>
+
+</div>
