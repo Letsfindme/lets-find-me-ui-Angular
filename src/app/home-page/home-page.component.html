@@ -7,12 +7,12 @@
         <p>Find Your Guid</p>
       </mat-card-header>
       <mat-card-content>
-        <form class="form-guid">
+        <form [formGroup]="findGuidsForm" class="form-guid">
           <mat-form-field class="full-width">
-            <input matInput placeholder="What're you looking for?" value="">
+            <input matInput placeholder="What're you looking for?" value="" formControlName="firstName">
           </mat-form-field>
           <mat-form-field>
-            <mat-select placeholder="Select Category">
+            <mat-select placeholder="Select Category" formControlName="Category">
               <mat-option value="option">Restaurant</mat-option>
               <mat-option value="option">Hotel</mat-option>
               <mat-option value="option">Option</mat-option>
@@ -21,16 +21,16 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Paris" value="City">
+            <input matInput placeholder="Paris" value="" formControlName="City">
           </mat-form-field>
           <div class="check-box">
-            <mat-checkbox [formControl]="">Disable select</mat-checkbox>
-            <mat-checkbox [formControl]="">Disable select</mat-checkbox>
+            <mat-checkbox formControlName="visitor">Disable select</mat-checkbox>
+            <mat-checkbox formControlName="me">Disable select</mat-checkbox>
           </div>
         </form>
       </mat-card-content>
       <mat-card-footer>
-        <button mat-raised-button>Search</button>
+        <button mat-raised-button (click)="findGuids()">Search</button>
       </mat-card-footer>
     </mat-card>
   </div>
@@ -39,9 +39,11 @@
     <div class="text-me">
       Check out Best ME articles
     </div>
-    <div class="post-grid">
-      <div *ngFor="let post of posts">
-        <app-post-card [post]="post"></app-post-card>
+    <div class="container-post-grid">
+      <div class="post-grid">
+        <div *ngFor="let post of posts">
+          <app-post-card [post]="post"></app-post-card>
+        </div>
       </div>
     </div>
   </div>
