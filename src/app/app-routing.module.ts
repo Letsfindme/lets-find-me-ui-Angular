@@ -11,7 +11,7 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { PostShowComponent } from './posts/post-show/post-show.component';
+import { PostResaultComponent } from './posts/post-resault/post-resault.component';
 
 const routes: Routes = [
   {
@@ -36,11 +36,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'posts',
+    path: 'searchResault',
     component: HomeLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: PostShowComponent }
+      { path: '', component: PostResaultComponent }
     ]
   },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },

@@ -18,12 +18,5 @@ export class PostCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  getPosts() {
-    return this.postService.getPostByUserId().subscribe(
-      posts => { this.post = posts,console.log(JSON.stringify(posts));
-       },
-      err => { console.log(err) }
-    );
-  }
 
 }

@@ -39,9 +39,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { PostCardComponent } from './posts/post-card/post-card.component';
-import { PostShowComponent } from './posts/post-show/post-show.component';
+import { PostCardResaultComponent } from './posts/post-card-resault/post-card-resault.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RatingComponent } from './rating/rating.component';
+import { PostResaultComponent } from './posts/post-resault/post-resault.component';
+import { SearchCardComponent } from './posts/search-card/search-card.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,11 @@ import { RatingComponent } from './rating/rating.component';
     AdminComponent,
     PageNotFoundComponent,
     PostCardComponent,
-    PostShowComponent,
+    PostCardResaultComponent,
     HomePageComponent,
-    RatingComponent
+    RatingComponent,
+    PostResaultComponent,
+    SearchCardComponent
   ],
   imports: [
     HttpClientModule,

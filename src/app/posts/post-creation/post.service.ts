@@ -10,8 +10,11 @@ const httpOptions = {
 };
 @Injectable()
 export class PostService {
+  searchForm;
+posts: Post[];
   postUrl = 'http://localhost:8080/posts/create';
   getPostsUrl = "http://localhost:8080/posts";
+  searchUrl="http://localhost:8080/posts";
   constructor(private http: HttpClient) { }
 
   createPost(post: Post): Observable<any> {
@@ -19,10 +22,17 @@ export class PostService {
     console.log(' post service ' + stringify(post));
     return this.http.post(this.postUrl, post, httpOptions);
   }
+
   getConfig() {
     return this.http.get("url");
   }
+
   getPostByUserId(): Observable<any> {
     return this.http.get(this.getPostsUrl);
+  }
+
+  findGuids(form: any): Observable<any> {
+    return this.http.get(this.getPostsUrl);
+    //return this.http.post(form, this.searchUrl);
   }
 }

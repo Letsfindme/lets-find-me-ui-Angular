@@ -1,21 +1,18 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { PostService } from '../posts/post-creation/post.service';
-import { Post } from '../models/post.model';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PostService } from '../post-creation/post.service';
+import { Post } from 'src/app/models/post.model';
 import { Router } from '@angular/router';
-import { PostCardResaultComponent } from '../posts/post-card-resault/post-card-resault.component';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-search-card',
+  templateUrl: './search-card.component.html',
+  styleUrls: ['./search-card.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class SearchCardComponent implements OnInit {
 
   findGuidsForm: FormGroup;
   posts: Post[];
-
-  @Output() emitter = new EventEmitter<Post[]>();
 
 
 
@@ -50,4 +47,5 @@ export class HomePageComponent implements OnInit {
     this.postService.searchForm = this.findGuidsForm.value;
     this.router.navigate(['/searchResault']);
   }
+
 }

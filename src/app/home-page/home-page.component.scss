@@ -1,53 +1,122 @@
 .home-container {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  height: 100%;
   box-sizing: content-box;
+}
+
+.container-left {
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  perspective: 100px;
+}
+
+@media(min-width: 840px) {
+  .container-left {
+    height: 91vh;
+  }
+
+  .container-post-grid {
+    display: flex;
+    justify-content: center;
+  }
+
+  .container-left::before {
+    animation: fade-slide-down 2s .5s cubic-bezier(0, 0.5, 0, 1) forwards;
+    animation-delay: 2s;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)),
+      url(../../assets/img/vw.jpg) no-repeat bottom;
+    background-size: cover;
+    content: "";
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .container-left:after {
+    background: #F9FCFF;
+    content: "";
+    height: 40rem;
+    left: -5%;
+    position: absolute;
+    right: -5%;
+    top: 90%;
+    transform-origin: 0 0;
+    transform: rotateZ(-4deg);
+    z-index: 0;
+  }
+
+  .post-grid {
+    max-width: 600px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    justify-content: end;
+    flex-wrap: wrap;
+  }
 }
 
 @media(max-width: 839.99px) {
   .home-container {
-    display: flex;
+    grid-template-columns: 1fr;
     flex-direction: column;
-    height: 100%;
     box-sizing: content-box;
+  }
+
+  .container-left::before {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8)),
+      url(../../assets/img/vw.jpg) no-repeat bottom;
+    background-size: cover;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .search-card {
+    margin: 5vh auto !important;
   }
 }
 
-.container-left,
-.container-right {
-  padding-top: 5vh;
+@media(max-width: 970px) {
+  .post-grid {
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
 }
 
-.container-left {
-  display: flex;
-  background-image: url("../../assets/img/vw.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.mat-card-heade {}
-
-.post-grid {
-  box-sizing: border-box;
-  display: flex;
-  align-items: stretch;
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  margin-top: 2%;
-  flex: 1 0 auto;
-
-}
 
 .search-card {
-  width: 377px;
+  position: relative;
+  max-width: 350px;
+  width: 80%;
   height: 400px;
+  perspective: 5.5cm;
+  border-radius: 0;
   margin: auto;
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
+
 
 .form-guid {
   display: flex;
@@ -73,11 +142,47 @@
   font-size: 1.5rem;
   font-weight: 400;
   color: #FF5A5F;
-  margin: 10vh auto 0 3vw;
+  margin: 8vh auto 0 3vw;
 }
 
 .text-guid {
   font-size: 1.5rem;
   font-weight: 400;
   color: #FF5A5F;
+}
+
+/* Animations */
+
+@keyframes fade-slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-4rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    left: -15px;
+  }
+
+  100% {
+    opacity: 1;
+    left: 0;
+  }
 }

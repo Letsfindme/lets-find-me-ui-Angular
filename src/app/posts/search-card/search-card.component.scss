@@ -1,0 +1,74 @@
+.search-card {
+  border-radius: 0;
+  position: relative;
+  max-width: 1050px;
+  width: 80%;
+  margin: 5vh auto 0 auto;
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: 0 4px 8px 0 rgba(255, 253, 163, 0.288), 0 6px 20px 0 rgba(235, 222, 38, 0.521);
+}
+
+button:hover,
+button:focus {
+  background: gold;
+  outline: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+}
+
+form .grid-left {
+  grid-column: 1 / 2;
+}
+
+.mat-card-footer button {
+  color: aliceblue;
+  background-color: #FF5A5F;
+  float: right;
+  margin-right: 2vw;
+}
+
+.check-box {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 0.5px solid rgba(0, 0, 0, .87);
+}
+
+.text-me {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FF5A5F;
+  margin: 8vh auto 0 3vw;
+}
+
+.text-guid {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FF5A5F;
+
+  p {
+
+    margin-top: 0 !important;
+  }
+}
