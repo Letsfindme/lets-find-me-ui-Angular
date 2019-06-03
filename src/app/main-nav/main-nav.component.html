@@ -1,8 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
 
-
   <mat-sidenav #drawer class="sidenav" [mode]="'over'" [opened]="false">
-
     <mat-toolbar color="primary">
       <a routerLink="/news">
         <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
@@ -85,8 +83,7 @@
 
     <ul class="nav-list" *ngIf="(isHandset$ | async)">
       <li class="box">
-        <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu"
-          src="assets/img/User_Avatar-04-512.png">
+        <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" src="assets/img/User_Avatar-04-512.png">
       </li>
       <mat-menu class="menu-profile" #menu="matMenu">
         <button mat-menu-item>
@@ -109,20 +106,14 @@
     </ul>
   </mat-toolbar>
 
-  <!-- <mat-sidenav-content></mat-sidenav-content> -->
+
+  <!-- Add new post button  -->
+  <div class="plus-button-container">
+    <a routerLink='postCreation'>
+      <button *ngIf="!_router.url.includes('postCreation')" class="plus-button"></button>
+    </a>
+  </div>
+
   <router-outlet></router-outlet>
 
 </mat-sidenav-container>
-
-<!-- Add Content Here 
-    <div class="container">
-      <ng-content></ng-content>
-
-       Add new post button 
-      <div class="plus-button-container">
-        <a routerLink='postCreation'>
-          <button *ngIf="!_router.url.includes('postCreation') && isLoggedIn" class="plus-button"></button>
-        </a>
-      </div>
-
-    </div> -->

@@ -36,6 +36,15 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'postCreation',
+    component: HomeLayoutComponent,
+    // canActivate: [AuthGuard],
+    children: [
+      { path: '', component: PostCreationComponent },
+      { path: '', component: PostResaultComponent }
+    ]
+  },
+  {
     path: 'searchResault',
     component: HomeLayoutComponent,
     canActivate: [AuthGuard],

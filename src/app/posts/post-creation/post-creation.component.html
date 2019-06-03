@@ -19,12 +19,13 @@
         </mat-label>
       </mat-form-field>
       <!--<mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>-->
-      <mat-form-field formGroupName="postContent">
-        <mat-label>Start asking your question here :)</mat-label>
-        <textarea formControlName="text" rows="4" matInput placeholder="jé faim!!!! jépa darjent!!!!!!"></textarea>
+      <mat-form-field formArrayName="postContent">
+        <div *ngFor="let item of postContents.controls; let pointIndex=index" [formGroupName]="pointIndex">
+          <mat-label>Start askin your question here!</mat-label>
+          <textarea formControlName="text" matInput placeholder="Jé faim jépa darjan!!"> </textarea>
+        </div>
       </mat-form-field>
     </div>
     <button class="find-button" mat-raised-button color="primary" type="submit">find answers</button>
   </form>
-
 </mat-card>
