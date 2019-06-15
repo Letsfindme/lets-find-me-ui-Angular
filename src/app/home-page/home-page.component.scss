@@ -5,14 +5,20 @@
 }
 
 .container-left {
+  position: sticky;
+  overflow: hidden;
+  top: 0;
   align-items: center;
   display: flex;
   font-size: 18px;
   justify-content: center;
-  overflow: hidden;
-  position: relative;
   text-align: center;
   perspective: 100px;
+}
+
+.container-right{
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
 }
 
 @media(min-width: 840px) {
@@ -116,7 +122,6 @@
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
-
 
 .form-guid {
   display: flex;

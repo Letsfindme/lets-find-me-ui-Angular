@@ -15,24 +15,37 @@ import { AuthService } from '../../auth/auth.service';
 export class PostCreationComponent implements OnInit {
   post: Post;
   postForm: FormGroup;
-  postContent: FormArray
-
-
+  //postContent: [];
   constructor(
     private postCrationService: PostService,
     private fb: FormBuilder,
     private tokenStorage: TokenStorageService
   ) {
-    this.post = new Post();
     this.postForm = this.fb.group({
-      'title': '',
-      'category': '',
-      'postContent': this.fb.array([{text:""}]),
-      'username': ''
+      title: '',
+      category: '',
+      postContent: this.fb.array([
+        this.fb.group({ 
+          text: '' 
+        })
+      ]),
+      username: ''
     });
   }
 
   ngOnInit() {
+  }
+
+  addPostContent() {
+    this.postContents.push(
+      this.fb.group({ 
+        text: '' 
+      })
+    );
+  }
+
+  get postContents() {
+    return this.postForm.get('postContent') as FormArray;
   }
 
   async onSubmit() {
@@ -42,7 +55,7 @@ export class PostCreationComponent implements OnInit {
 
   createPost(postForm) {
     console.log('post component createPost', JSON.stringify(postForm))
-    this.postCrationService.createPost(postForm).subscribe(post=>
-      console.log('retour' +post));
+    this.postCrationService.createPost(postForm).subscribe(post =>
+      console.log('retour' + post));
   }
 }

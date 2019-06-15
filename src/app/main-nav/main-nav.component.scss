@@ -1,4 +1,5 @@
 .sidenav-container {
+  height: 100%;
   //position: absolute !important;
   // top: 0;
   // bottom: 0;
@@ -133,12 +134,6 @@ i.material-icons {
   width: 200px;
 }
 
-.plus-button-container {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-}
-
 .mat-menu-item {
   display: flex !important;
   align-items: center;
@@ -150,6 +145,22 @@ i.material-icons {
   font-weight: bold;
   font-size: 1.5rem;
   animation: fadein 1s ease-in-out;
+}
+
+.plus-button-container {
+  z-index: 1000;
+  position: fixed;
+  bottom: 2vh;
+  right: 2vw;
+  &:hover {
+    transform: rotate(0.5turn);
+    transition: 0.5s;
+  }
+
+  &:not( :hover) {
+    transform: rotate(1turn);
+    transition: 0.5s;
+  }
 }
 
 .plus-button {
@@ -182,10 +193,7 @@ i.material-icons {
     width: 1em;
   }
 
-  &:hover {
-    transform: rotate(0.5turn);
-    transition: 0.5s;
-  }
+  
 
   &:hover:after,
   &:hover:before {

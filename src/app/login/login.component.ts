@@ -19,6 +19,7 @@ export class LoginComponent {
   errorMessage = '';
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
+  darkModeActive: boolean;
 
   loading: boolean = false;
   color = 'accent';

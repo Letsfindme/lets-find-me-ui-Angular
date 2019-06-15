@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-layout.component.scss']
 })
 export class HomeLayoutComponent implements OnInit {
-
+  isLoggedIn: boolean;
   constructor() { }
 
   ngOnInit() {

@@ -17,9 +17,9 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
-  private postUrl = 'http://localhost:8080/posts/create';
+  private loginUrl = 'http://letsfindme.online:8050/api/auth/signin';
+  private signupUrl = 'http://letsfindme.online:8050/api/auth/signup';
+  private postUrl = 'http://letsfindme.online:8050/posts/create';
   constructor(private tokenStorage: TokenStorageService,
     private http: HttpClient) {
   }

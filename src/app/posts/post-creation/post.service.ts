@@ -12,9 +12,9 @@ const httpOptions = {
 export class PostService {
   searchForm;
 posts: Post[];
-  postUrl = 'http://localhost:8080/posts/create';
-  getPostsUrl = "http://localhost:8080/posts";
-  searchUrl="http://localhost:8080/posts";
+  postUrl = 'http://letsfindme.online:8050/posts/create';
+  getPostsUrl = "http://letsfindme.online:8050/posts";
+  searchUrl="http://letsfindme.online:8050/posts";
   constructor(private http: HttpClient) { }
 
   createPost(post: Post): Observable<any> {

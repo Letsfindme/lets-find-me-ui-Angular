@@ -1,15 +1,15 @@
 .not-found {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   justify-content: center;
   align-items: center;
 }
 
 p {
-  font-size: 5em;
+  margin: 5vh auto;
+  font-size: 5vw;
 }
 
 img {
-  min-width: 50vw;
-  max-width: 200px;
+  margin: auto;
+  min-width: 90%;
 }
