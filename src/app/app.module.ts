@@ -44,6 +44,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { RatingComponent } from './rating/rating.component';
 import { PostResaultComponent } from './posts/post-resault/post-resault.component';
 import { SearchCardComponent } from './posts/search-card/search-card.component';
+import { PostCreationLayoutComponent } from './posts/post-creation-layout/post-creation-layout.component';
+import { PostSearchResultLayoutComponent } from './posts/post-search-result-layout/post-search-result-layout.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { SearchCardComponent } from './posts/search-card/search-card.component';
     HomePageComponent,
     RatingComponent,
     PostResaultComponent,
-    SearchCardComponent
+    SearchCardComponent,
+    PostCreationLayoutComponent,
+    PostSearchResultLayoutComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,6 +1,6 @@
 <div class="wrapper">
-  <app-search-card></app-search-card>
-
+  <ng-content></ng-content>
+  
   <div *ngIf="posts" class="post-container">
     <div *ngFor="let post of posts ; let i = index; let firstItem = first; let lastItem = last"
       [ngClass]="{ active: firstItem }" class="red">

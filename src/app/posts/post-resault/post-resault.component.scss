@@ -25,23 +25,11 @@
 
   .active {
     grid-column: 1/ span 2;
+  }
 
-    // .app-post {
-    //   .post-card {
-    //     .thumb {
-    //       border: 2px solid crimson;
-    //       padding-bottom: 10% !important;
-    //     }
-    //   }
-
-//   }
-
-
-}
-
-.item-1 h1 {
-  font-size: 30px;
-}
+  .item-1 h1 {
+    font-size: 30px;
+  }
 }
 
 @media only screen and (min-width: 850px) {

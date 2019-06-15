@@ -38,7 +38,7 @@
       *ngIf="isHandset$ | async">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-    <a *ngIf="isHandset$ | async" routerLink="/news">
+    <a routerLink="/">
       <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
       <p>Let's Find ME</p>
     </a>
@@ -66,6 +66,10 @@
           <mat-icon>publish</mat-icon>
           <span>Share</span>
         </button>
+        <button mat-menu-item routerLink='/profile'>
+          <mat-icon>publish</mat-icon>
+          <span>My profile</span>
+        </button>
         <button mat-menu-item disabled>
           <mat-icon>mode_comment</mat-icon>
           <span>Comment</span>
@@ -90,6 +94,10 @@
           <mat-icon>publish</mat-icon>
           <span>Share</span>
         </button>
+        <button mat-menu-item routerLink='/profile'>
+          <mat-icon>publish</mat-icon>
+          <span>My profile</span>
+        </button>
         <button mat-menu-item disabled>
           <mat-icon>mode_comment</mat-icon>
           <span>Comment</span>
@@ -108,10 +116,8 @@
 
 
   <!-- Add new post button  -->
-  <div class="plus-button-container">
-    <a routerLink='postCreation'>
-      <button *ngIf="!_router.url.includes('postCreation')" class="plus-button"></button>
-    </a>
+  <div class="plus-button-container" routerLink='/postCreation'>
+    <button *ngIf="!_router.url.includes('postCreation')" class="plus-button"></button>
   </div>
 
   <router-outlet></router-outlet>

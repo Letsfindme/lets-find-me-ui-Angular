@@ -1,17 +1,17 @@
 <div class="post-card">
+  <div class="thumb" alt="Photo of a Shiba Inu"></div>
+  <article>
+    <h1>{{post.title}}</h1>
+    <p>{{postContent.text}}</p>
+    <span>Melody Nieves</span>
+  </article>
   <div class="post-header">
     <img mat-avatar class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" alt="img" />
     <div class="title">
-      <div> title</div>
-      <div class="date">09/04/2011</div>
+      <div>{{post.username}}</div>
+      <div class="date">{{post.creationDate | date: 'yyyy-MM-dd'}}</div>
     </div>
     <div class="spacer"></div>
     <app-rating></app-rating>
   </div>
-  <div class="thumb" alt="Photo of a Shiba Inu"></div>
-  <article>
-    <h1>Created by You, July Edition</h1>
-    <p>Welcome to our monthly feature of fantastic tutorial results created by you, the Envato Tuts+ community! </p>
-    <span>Melody Nieves</span>
-  </article>
 </div>

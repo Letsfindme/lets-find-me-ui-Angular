@@ -12,6 +12,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PostResaultComponent } from './posts/post-resault/post-resault.component';
+import { PostCreationLayoutComponent } from './posts/post-creation-layout/post-creation-layout.component';
+import { PostSearchResultLayoutComponent } from './posts/post-search-result-layout/post-search-result-layout.component';
 
 const routes: Routes = [
   {
@@ -40,8 +42,7 @@ const routes: Routes = [
     component: HomeLayoutComponent,
     // canActivate: [AuthGuard],
     children: [
-      { path: '', component: PostCreationComponent },
-      { path: '', component: PostResaultComponent }
+      { path: '', component: PostCreationLayoutComponent }
     ]
   },
   {
@@ -49,7 +50,15 @@ const routes: Routes = [
     component: HomeLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: PostResaultComponent }
+      { path: '', component: PostSearchResultLayoutComponent }
+    ]
+  },
+  {
+    path: 'profile',
+    component: HomeLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: UserComponent }
     ]
   },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },

@@ -41,7 +41,8 @@
   }
 
   .thumb {
-    padding-bottom: 60%;
+    //padding-bottom: 60%;
+    height: 30vh;
     background-size: cover;
     background-position: center center;
     background: url(../../../assets/img/people-communicating.jpg);
@@ -68,7 +69,7 @@
 }
 
 .post-header {
-  margin: 5px;
+  margin: 0 10px 5px 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

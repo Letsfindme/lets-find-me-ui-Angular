@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../../models/post.model';
+import { PostContent } from 'src/app/models/PostContent.model';
 
 @Component({
   selector: 'app-post-card-resault',
@@ -9,10 +10,11 @@ import { Post } from '../../models/post.model';
 export class PostCardResaultComponent implements OnInit {
 
   @Input() post: Post;
-  
+  postContent: PostContent;
   constructor() {
   }
 
   ngOnInit() {
+    this.postContent = this.post.postContent[0];
   }
 }

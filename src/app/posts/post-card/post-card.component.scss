@@ -1,4 +1,6 @@
 .post-card {
+  position: relative;
+  display: inline-block;
   max-width: 29%;
   margin: 3vh 1vw;
   border: 1px solid #CFCFCF;
@@ -8,6 +10,12 @@
   justify-content: center;
   flex-direction: column;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .post-header {
