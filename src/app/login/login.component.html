@@ -3,14 +3,12 @@
     
     <div class="main__container">
       <div class="login-card">
+
         <main class="login-content">
-          <span class="login-header">Let's find me</span>
+          <span class="login-header">Let's Find ME</span>
           <form class="login-form">
-
-
             <input class="login-input" matInput placeholder="Username" [(ngModel)]="form.username" #username="ngModel"
               name="username" required>
-
             <input class="login-input" matInput placeholder="Password" [(ngModel)]="form.password" #password="ngModel"
               name="password" required>
             <button class="login-btn" mat-raised-button ng-click="showDetails = ! showDetails" (click)="login()"
@@ -24,7 +22,6 @@
             <span class="signup-notice">Don't have an account?</span><br>
             <a class="signup-link" routerLink="/signup">Sign up</a>
           </div>
-
         </main>
 
         <div class="login-aside">

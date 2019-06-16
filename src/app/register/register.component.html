@@ -10,7 +10,7 @@
           <mat-card-title>Register</mat-card-title>
         </mat-card-header>
 
-        <form class="registration" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
           <mat-form-field>
             <mat-label>Your name</mat-label>
             <input matInput name="name" [(ngModel)]="form.name" #name="ngModel" required />
@@ -42,18 +42,23 @@
               <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
             </div>
           </mat-form-field>
-          <button mat-raised-button color="primary">Register</button>
+          <button >Register</button>
           <div *ngIf="f.submitted && isSignUpFailed" style="color: red">
             Signup failed!<br />{{errorMessage}}
           </div>
         </form>
 
         <div class="signup-link-wrapper">
-          <span class="signup-notice">Don't have an account?</span><br>
-          <a class="signup-link" routerLink="/signup">Sign up</a>
+          <span class="signup-notice">Already have an account?</span><br>
+          <a class="signup-link" routerLink="/login">Sign in</a>
         </div>
 
       </main>
+      <div class="login-aside">
+          <div class="login-aside-overlay"></div>
+          <h1 class="login-welcome-text">Let's Become ME!</h1>
+          <hr class="login-aside-hr">
+        </div>
     </div>
   </div>
 </ng-template>

@@ -1,0 +1,37 @@
+<mat-card class="search-card">
+  <div class="text-guid">
+    <p>Find Your Guid</p>
+  </div>
+
+  <mat-card-content>
+    <form [formGroup]="findGuidsForm">
+      <mat-form-field class="limit-width grid-left">
+        <input matInput placeholder="What're you looking for?" value="" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Paris" value="" formControlName="City">
+      </mat-form-field>
+
+      <div class="check-box grid-left">
+        <mat-checkbox formControlName="visitor">Disable select</mat-checkbox>
+        <mat-checkbox formControlName="me">Disable select</mat-checkbox>
+      </div>
+
+      <mat-form-field>
+        <mat-select placeholder="Select Category" formControlName="Category">
+          <mat-option value="option">Restaurant</mat-option>
+          <mat-option value="option">Hotel</mat-option>
+          <mat-option value="option">Option</mat-option>
+          <mat-option value="option">Option</mat-option>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+<div></div>
+      <button mat-raised-button (click)="findGuids()">Search</button>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>
