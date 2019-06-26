@@ -3,6 +3,7 @@ import { Post } from '../../models/post.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { stringify } from 'querystring';
+import { PostRate } from 'src/app/models/post-rate';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -11,10 +12,12 @@ const httpOptions = {
 @Injectable()
 export class PostService {
   searchForm;
-posts: Post[];
-  postUrl = 'http://letsfindme.online:8050/posts/create';
-  getPostsUrl = "http://letsfindme.online:8050/posts";
-  searchUrl="http://letsfindme.online:8050/posts";
+  posts: Post[];
+  postUrl = 'http://localhost:8050/posts/create';
+  getPostsUrl = "http://localhost:8050/findPaginated?p=1";
+  searchUrl = "http://localhost:8050/posts";
+  getPostByIdUrl = "http://localhost:8050/posts/";
+  rateThisPostUrl='http://localhost:8050/posts/addRate';
   constructor(private http: HttpClient) { }
 
   createPost(post: Post): Observable<any> {
@@ -27,12 +30,21 @@ posts: Post[];
     return this.http.get("url");
   }
 
-  getPostByUserId(): Observable<any> {
+  findPaginated(): Observable<any> {
     return this.http.get(this.getPostsUrl);
   }
 
+  getPostByUserId(userId: String): Observable<any> {
+    return this.http.get(this.getPostByIdUrl + userId);
+  }
+
   findGuids(form: any): Observable<any> {
-    return this.http.get(this.getPostsUrl);
+    return this.http.get(this.searchUrl);
     //return this.http.post(form, this.searchUrl);
+  }
+
+  rateThisPost(postRate: PostRate): Observable<any> {
+    console.log('service postrate',postRate);
+    return this.http.post(this.rateThisPostUrl, postRate);
   }
 }

@@ -25,7 +25,6 @@ export class MainNavComponent {
 
   ngOnInit() {
     this.getToken();
-    console.log(Breakpoints);
   }
 
   public getToken() {

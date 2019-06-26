@@ -1,0 +1,21 @@
+.post-container{
+    margin: 5vh auto;
+    width: 50%;
+    .mat-card{
+        margin: 5vh auto;
+    }
+}
+
+@media (max-width: 800px){
+    .post-container{
+        margin: 5vh auto;
+        width: 90%;
+        .mat-card{
+            margin: 5vh auto;
+        }
+    }
+}
+
+.mat-form-field {
+  display: contents;
+}

@@ -9,6 +9,7 @@ export class Post {
   username: string;
   commentCount?: number;
   likeCount?: number;
+  starCount?: number;
   liked?: boolean;
   creationDate: string;
 }
