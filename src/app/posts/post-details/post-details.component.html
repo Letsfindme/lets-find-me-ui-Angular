@@ -1,0 +1,25 @@
+<div *ngIf="filtersLoaded | async">
+  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+  <div class="container">
+    <div class="category">
+      <div>
+        <img class="_1u6feuz3" src="https://a0.muscache.com/airbnb/static/packages/entire_home.dfb3949c.svg" width="64"
+          height="64" alt="">
+      </div>
+      <div class="text">Category {{post.category}}</div>
+    </div>
+
+    <div class="post-header">
+      <img mat-avatar class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" alt="img" />
+      <div class="title">
+        <div>{{post.username}}</div>
+        <div class="date">{{post.creationDate | date: 'yyyy-MM-dd'}}</div>
+      </div>
+      <div class="spacer"></div>
+      <app-rating [rating]='starCount' [itemId]='post.id' (ratingClick)='ratingComponentClick($event)'></app-rating>
+    </div>
+    <p>
+      {{postContent.text}}
+    </p>
+  </div>
+</div>
