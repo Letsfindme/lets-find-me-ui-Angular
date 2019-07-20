@@ -1,6 +1,10 @@
-export interface User {
+import { Address } from "./address";
+
+
+export class User {
   id: number;
   username: string;
-  firstName: number;
-  lastName: number;
+  firstname: string;
+  lastname: string;
+  address?: Address[];
 }

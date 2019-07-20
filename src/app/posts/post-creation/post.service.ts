@@ -3,6 +3,8 @@ import { Post } from '../../models/post.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { stringify } from 'querystring';
+import { PostRate } from 'src/app/models/post-rate';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -10,12 +12,17 @@ const httpOptions = {
 };
 @Injectable()
 export class PostService {
+
   searchForm;
-posts: Post[];
-  postUrl = 'http://letsfindme.online:8050/posts/create';
-  getPostsUrl = "http://letsfindme.online:8050/posts";
-  searchUrl="http://letsfindme.online:8050/posts";
-  constructor(private http: HttpClient) { }
+  posts: Post[];
+  postUrl = 'http://localhost:8050/posts/create';
+  getPostsUrl = "http://localhost:8050/findPaginated?p=1";
+  searchUrl = "http://localhost:8050/posts";
+  getPostByIdUrl = "http://localhost:8050/posts/";
+  rateThisPostUrl = 'http://localhost:8050/posts/addRate';
+  photoUrl = 'http://localhost:8050/images/';
+  
+  constructor(private http: HttpClient) { responseType: 'blob'}
 
   createPost(post: Post): Observable<any> {
     console.log('hhtp options post service ' + JSON.stringify(this.http.options));
@@ -27,12 +34,38 @@ posts: Post[];
     return this.http.get("url");
   }
 
-  getPostByUserId(): Observable<any> {
+  findPaginated(): Observable<any> {
     return this.http.get(this.getPostsUrl);
   }
 
+  getPostByUserId(userId: String): Observable<any> {
+    return this.http.get(this.getPostByIdUrl + userId);
+  }
+
   findGuids(form: any): Observable<any> {
-    return this.http.get(this.getPostsUrl);
+    return this.http.get(this.searchUrl);
     //return this.http.post(form, this.searchUrl);
   }
+
+  rateThisPost(postRate: PostRate): Observable<any> {
+    console.log('service postrate', postRate);
+    return this.http.post(this.rateThisPostUrl, postRate);
+  }
+
+  saveImage(image: FormData, id: number): Observable<any> {
+    return this.http
+      .post(`http://localhost:8050/images?id=${id}`, image);
+  }
+
+  getUserPhoto(id: number): Observable<Blob> {
+    return this.http
+      .get(`http://localhost:8050/images?id=${id}`, { responseType: 'blob' });
+  }
+
+  getImageByUserId(fileName?: string): Observable<Blob> {
+    return this.http
+    .get(this.photoUrl + fileName , { responseType: 'blob' });
+  }
+
+  
 }

@@ -36,9 +36,9 @@ export class HomePageComponent implements OnInit {
   }
 
   getPosts() {
-    return this.postService.getPostByUserId().subscribe(
+    return this.postService.findPaginated().subscribe(
       posts => {
-        this.posts = posts;
+        this.posts = posts.content;
       },
       err => {
          console.log(err) 

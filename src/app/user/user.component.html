@@ -1,31 +1,58 @@
-<div class="container">
-
-</div>
-
-<div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
-
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> User Id </mat-header-cell>
-      <mat-cell *matCellDef="let element">  </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="username">
-      <mat-header-cell *matHeaderCellDef> UserName</mat-header-cell>
-      <mat-cell *matCellDef="let element">  </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="firstName">
-      <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
-      <mat-cell *matCellDef="let element">  </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="lastName">
-      <mat-header-cell *matHeaderCellDef> age </mat-header-cell>
-      <mat-cell *matCellDef="let element">  </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
+<img [src]="imageToShow"/>
+<form class="post-container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-card class="mat-card mat-photo">
+    <div id="user-profile" class="user-profile-img ">
+      <h2>
+        <span class="user_title"></span>
+      </h2>
+    </div>
+    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+    <button (click)="fileInput.click()">Select photo</button>
+    <button (click)="onUpload()">Save my photo!</button>
+  </mat-card>
+  <mat-card class="mat-card">
+    <div class="post-header">
+      <mat-form-field [hideRequiredMarker]="userForm.value.hideRequired">
+        <input matInput formControlName="firstname" placeholder="Name" required>
+      </mat-form-field>
+    </div>
+    <div class="post-header">
+      <mat-form-field [hideRequiredMarker]="userForm.value.hideRequired">
+        <input matInput formControlName="lastname" placeholder="Last name" required>
+      </mat-form-field>
+    </div>
+    <div class="post-header">
+      <mat-form-field [hideRequiredMarker]="userForm.value.hideRequired">
+        <input matInput formControlName="username" placeholder="User name" required>
+      </mat-form-field>
+    </div>
+    <div class="post-header">
+      <mat-form-field [hideRequiredMarker]="userForm.value.hideRequired">
+        <input matInput formControlName="email" placeholder="Email" required>
+      </mat-form-field>
+    </div>
+  </mat-card>
+  <mat-card class="mat-card">
+    <div formArrayName="address">
+      <div *ngFor="let address of userForm.controls.address.controls; let i=index">
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input formControlName="street" matInput placeholder="Entre your adresse!!">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>city</mat-label>
+            <input formControlName="city" matInput placeholder="City name!!">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Postcode!</mat-label>
+            <input formControlName="postcode" matInput placeholder="Postcode!!">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="mat-card">
+    <button class="find-button" mat-raised-button color="primary" type="submit">Update my account</button>
+  </mat-card>
+</form>

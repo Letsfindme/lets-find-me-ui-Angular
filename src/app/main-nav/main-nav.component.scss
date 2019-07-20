@@ -137,6 +137,14 @@ i.material-icons {
 .mat-menu-item {
   display: flex !important;
   align-items: center;
+
+  i {
+    font-size: 1.2em;
+  }
+
+  span {
+    margin-left: 10px;
+  }
 }
 
 .active {
@@ -152,6 +160,7 @@ i.material-icons {
   position: fixed;
   bottom: 2vh;
   right: 2vw;
+
   &:hover {
     transform: rotate(0.5turn);
     transition: 0.5s;
@@ -193,7 +202,7 @@ i.material-icons {
     width: 1em;
   }
 
-  
+
 
   &:hover:after,
   &:hover:before {

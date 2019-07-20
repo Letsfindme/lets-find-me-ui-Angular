@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {User} from './models/user.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from './models/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,11 +13,16 @@ const httpOptions = {
 })
 export class UserServiceService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  private userUrl = 'http://letsfindme.online:8050/profile';
+  private userUrl = 'http://localhost:8050/user/profile/';
 
-  public getUsers(username: string): Observable <User[]> {
-    return this.http.get<User[]>(this.userUrl +"/"+username);
+  public getUsers(username: string): Observable<User> {
+    return this.http.get<User>(this.userUrl + username);
   }
+
+  updateUser(user: User): Observable<User>  {
+    return this.http.post<User>(this.userUrl, user);
+  }
+
 }

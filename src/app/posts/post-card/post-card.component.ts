@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../../models/post.model';
 import { PostService } from '../post-creation/post.service';
-import { Observable } from 'rxjs';
 import { PostContent } from 'src/app/models/PostContent.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -11,17 +11,20 @@ import { PostContent } from 'src/app/models/PostContent.model';
 })
 export class PostCardComponent implements OnInit {
 
- @Input() post: Post;
- postContent: PostContent;
- 
-  constructor(private postService: PostService) {
+  @Input() post: Post;
+  postContent: PostContent;
+  starCount: number;
+
+  constructor(private postService: PostService,
+    public _router: Router) {
   }
 
   ngOnInit() {
-    this.post.postContent.forEach(postContent => {
-      this.postContent = postContent
-    });    
+    this.postContent = this.post.postContent[0];
+    this.starCount = this.post.starCount;
   }
 
-
+  goTodetails() {
+    this._router.navigate(['posts', this.post.id]);
+  }
 }

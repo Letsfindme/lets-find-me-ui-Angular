@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormArray, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatToolbarModule,
@@ -47,6 +47,9 @@ import { SearchCardComponent } from './posts/search-card/search-card.component';
 import { PostCreationLayoutComponent } from './posts/post-creation-layout/post-creation-layout.component';
 import { PostSearchResultLayoutComponent } from './posts/post-search-result-layout/post-search-result-layout.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { PostDetailsComponent } from './posts/post-details/post-details.component';
+import { NgxGalleryModule } from 'ngx-gallery';
+
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     PostResaultComponent,
     SearchCardComponent,
     PostCreationLayoutComponent,
-    PostSearchResultLayoutComponent
+    PostSearchResultLayoutComponent,
+    PostDetailsComponent
   ],
   imports: [
     HttpClientModule,
@@ -94,7 +98,8 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     PostCreationModule,
     FormsModule,
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxGalleryModule
   ],
   providers: [
     PostService,
