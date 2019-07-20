@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserServiceService } from '../user-service.service';
+import { Router, Data } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
 import { Address } from '../models/address';
+import { HttpClient } from '@angular/common/http';
+import { PostService } from '../posts/post-creation/post.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -14,11 +16,18 @@ import { Address } from '../models/address';
 export class UserComponent implements OnInit {
   userForm: FormGroup;
   user: User;
-
+  selectedFile: File
+  userName: string;
+  image: any;
+  imageToShow: any;
+  
   constructor(private fb: FormBuilder,
+    private postService: PostService,
+    private http: HttpClient,
     private router: Router,
-    private userService: UserServiceService,
+    private userService: UserService,
     private tokenStorage: TokenStorageService) {
+    this.userName = this.tokenStorage.getUsername();
     this.userForm = this.fb.group({
       firstname: [''],
       lastname: [''],
@@ -29,23 +38,22 @@ export class UserComponent implements OnInit {
       ])
     });
 
-    this.userService.getUsers(this.tokenStorage.getUsername()).subscribe(
+    this.userService.getUsers(this.userName).subscribe(
       userData => {
         this.user = userData;
-        this.userForm.patchValue(userData)
-        console.log('userdata ', userData);
-        console.log('address ', this.user.address);
-      }
-    );
-
-
-
+        this.userForm.patchValue(userData);
+        this.getImageByUserId(this.user.id);
+        // this.userService.saveUserPhotoToService(userData.id);
+        // let img = document.getElementById('user-profile');
+        // let url = this.userService.url;
+        // img.style.backgroundImage = `url(${url})`;
+        // this.imageToShow = this.userService.userImage();
+      });
     // if (this.user.address != null) {
     //   this.user.address.forEach(userAddress => {
     //     this.addressForm.push(this.convertAddressToForm(userAddress));
     //   });
     // }
-
   }
 
   get addressForm(): FormArray {
@@ -74,7 +82,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    //this.getImageByUserId(this.user.id);
   }
 
   onSubmit() {
@@ -82,16 +90,11 @@ export class UserComponent implements OnInit {
     this.user.address = this.userForm.controls['address'].value;
     // this.user.address.forEach(address => {
     //   address.user = this.user.username;
-      
     // });
     //this.user.address[0].user=this.userForm.controls['address'].get[0].user,
-    console.log('submit user ',this.user);
-    
-    this.userService.updateUser(this.user).subscribe(data =>
-      {
-        console.log('data from back ', data);
-        
-      })
+    this.userService.updateUser(this.user).subscribe(data => {
+      console.log('data from back ', data);
+    })
   }
 
   private convertAddressToForm(userAddress: Address): FormGroup {
@@ -101,5 +104,40 @@ export class UserComponent implements OnInit {
       postcode: [userAddress.postcode]
     })
   }
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
 
+  onUpload() {
+    const file = new FormData();
+    file.append('file', this.selectedFile, this.selectedFile.name);
+    this.postService.saveImage(file, this.user.id)
+      .subscribe(event => {
+        console.log(event); // handle event here
+      });
+    //this.getImageByUserId(this.user.id);
+  }
+
+  getImageByUserId(id: number) {
+    this.userService.getUserPhoto(id)
+      .subscribe(blob => {
+        this.createImageFromBlob(blob);
+        this.image = blob;
+        let img = document.getElementById('user-profile');
+        let url = URL.createObjectURL(blob);
+        img.style.backgroundImage = `url(${url})`;
+      });
+  }
+
+  createImageFromBlob(image: Blob) {
+    
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
 }

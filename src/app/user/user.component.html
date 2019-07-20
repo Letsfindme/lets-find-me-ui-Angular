@@ -1,4 +1,15 @@
+<img [src]="imageToShow"/>
 <form class="post-container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-card class="mat-card mat-photo">
+    <div id="user-profile" class="user-profile-img ">
+      <h2>
+        <span class="user_title"></span>
+      </h2>
+    </div>
+    <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+    <button (click)="fileInput.click()">Select photo</button>
+    <button (click)="onUpload()">Save my photo!</button>
+  </mat-card>
   <mat-card class="mat-card">
     <div class="post-header">
       <mat-form-field [hideRequiredMarker]="userForm.value.hideRequired">

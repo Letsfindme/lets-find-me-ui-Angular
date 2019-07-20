@@ -7,6 +7,14 @@
         <p>Let's Find ME</p>
       </a>
     </mat-toolbar>
+
+    <mat-nav-list class="Categories">
+      <a mat-list-item *ngIf="!isLoggedIn" routerLink='login'>Log in</a>
+      <a mat-list-item *ngIf="!isLoggedIn" routerLink='register'>Sign up</a>
+      <a mat-list-item><i class="fas fa-store"></i>Store</a>
+      <a mat-list-item><i class="fas fa-glass-cheers"></i>Become a Guide</a>
+    </mat-nav-list>
+
     <div class="Categories-text">
       <div class="Categories-icon">
         <i class="fas fa-crosshairs"></i>
@@ -45,6 +53,7 @@
 
     <div class="spacer"></div>
 
+    <!-- Nav buttons full screen !isHandset -->
     <ul class="nav-list" *ngIf="!(isHandset$ | async)">
       <li class="box">
         <button>Become a Guide</button>
@@ -63,51 +72,52 @@
       </li>
       <mat-menu class="menu-profile" #menu="matMenu">
         <button mat-menu-item>
-          <mat-icon>publish</mat-icon>
+          <i class="fas fa-share-alt"></i>
           <span>Share</span>
         </button>
         <button mat-menu-item routerLink='/profile'>
-          <mat-icon>publish</mat-icon>
+          <i class="fas fa-user-circle"></i>
           <span>My profile</span>
         </button>
         <button mat-menu-item disabled>
-          <mat-icon>mode_comment</mat-icon>
+          <i class="fas fa-comments"></i>
           <span>Comment</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>delete</mat-icon>
+          <i class="fas fa-trash-alt"></i>
           <span>Delete</span>
         </button>
         <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
-          <mat-icon>power_settings_new</mat-icon>
+          <i class="fas fa-power-off"></i>
           <span>Log Out</span>
         </button>
       </mat-menu>
     </ul>
 
+    <!-- Nav buttons mobile isHandset -->
     <ul class="nav-list" *ngIf="(isHandset$ | async)">
       <li class="box">
         <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" src="assets/img/User_Avatar-04-512.png">
       </li>
       <mat-menu class="menu-profile" #menu="matMenu">
         <button mat-menu-item>
-          <mat-icon>publish</mat-icon>
+          <i class="fas fa-share-alt"></i>
           <span>Share</span>
         </button>
         <button mat-menu-item routerLink='/profile'>
-          <mat-icon>publish</mat-icon>
+          <i class="fas fa-user-circle"></i>
           <span>My profile</span>
         </button>
         <button mat-menu-item disabled>
-          <mat-icon>mode_comment</mat-icon>
+          <i class="fas fa-comments"></i>
           <span>Comment</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>delete</mat-icon>
+          <i class="fas fa-trash-alt"></i>
           <span>Delete</span>
         </button>
         <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
-          <mat-icon>power_settings_new</mat-icon>
+          <i class="fas fa-power-off"></i>
           <span>Log Out</span>
         </button>
       </mat-menu>

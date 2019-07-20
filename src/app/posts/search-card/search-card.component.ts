@@ -33,7 +33,7 @@ export class SearchCardComponent implements OnInit {
   }
 
   getPosts() {
-    return this.postService.getPostByUserId().subscribe(
+    return this.postService.getPostByUserId('4').subscribe(
       posts => {
         this.posts = posts;
       },
