@@ -52,12 +52,12 @@ export class PostService {
     return this.http.post(this.rateThisPostUrl, postRate);
   }
 
-  saveImage(image: FormData, id: number): Observable<any> {
+  saveImage(image: FormData, id): Observable<any> {
     return this.http
       .post(`http://localhost:8050/images?id=${id}`, image);
   }
 
-  getUserPhoto(id: number): Observable<Blob> {
+  getUserPhoto(id): Observable<Blob> {
     return this.http
       .get(`http://localhost:8050/images?id=${id}`, { responseType: 'blob' });
   }
