@@ -5,6 +5,7 @@ import { PostService } from './post.service';
 import { Post } from '../../models/post.model';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { TokenStorageService } from '../../auth/token-storage.service';
+import { UserService } from 'src/app/user/user.service';
 
 
 @Component({
@@ -15,11 +16,13 @@ import { TokenStorageService } from '../../auth/token-storage.service';
 export class PostCreationComponent implements OnInit {
   post: Post;
   postForm: FormGroup;
+  imageToShow: string | ArrayBuffer;
   //postContent: [];
   constructor(
     private postCrationService: PostService,
     private fb: FormBuilder,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private userService: UserService
   ) {
     this.postForm = this.fb.group({
       title: '',
@@ -34,6 +37,7 @@ export class PostCreationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getImageByUserId(sessionStorage.getItem('AuthUsername'))
   }
 
   addPostContent() {
@@ -54,8 +58,29 @@ export class PostCreationComponent implements OnInit {
   }
 
   createPost(postForm) {
-    console.log('post component createPost', JSON.stringify(postForm))
-    this.postCrationService.createPost(postForm).subscribe(post =>
-      console.log('retour' + post));
+    this.postCrationService.createPost(postForm).subscribe(post =>{
+      console.log('post success');
+    });
+  }
+
+  getImageByUserId(name: string) {
+    this.userService.getUserPhoto(name)
+      .subscribe(blob => {
+        this.createImageFromBlob(blob);
+        let img = document.getElementById('user-profile');
+        let url = URL.createObjectURL(blob);
+        img.style.backgroundImage = `url(${url})`;
+        img.style.borderRadius = '50%';
+      });
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 }

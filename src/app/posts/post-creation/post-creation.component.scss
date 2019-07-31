@@ -40,4 +40,8 @@ textarea{
   margin: 0 20px;
   width: 40px;
   height: 40px;
+  background-size: cover;
+  &#user-profile{
+    border-radius: 50%;
+  }
 }

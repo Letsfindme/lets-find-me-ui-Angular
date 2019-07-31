@@ -1,7 +1,7 @@
 <mat-card class="post-card">
   <form class="post-container" [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <div class="post-header">
-      <img class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" alt="img" />
+      <div class="im-here-img" id="user-profile"></div>
       <mat-form-field [hideRequiredMarker]="postForm.value.hideRequired">
         <input matInput formControlName="title" placeholder="Post title" required>
       </mat-form-field>
