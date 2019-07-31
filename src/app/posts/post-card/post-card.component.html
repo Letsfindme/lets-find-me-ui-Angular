@@ -1,6 +1,8 @@
 <div class="post-card" (click)="goTodetails()">
   <div class="post-header">
-    <img mat-avatar class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" alt="img" />
+    <!-- <div mat-avatar class="im-here-img" id={{post.username}} alt="img"></div> -->
+    <!-- <img mat-avatar class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" /> -->
+    <img mat-avatar class="im-here-img" [src]="imageToShow" />
     <div class="title">
       <div>{{post.username}}</div>
       <div class="date">{{post.creationDate | date: 'yyyy-MM-dd'}}</div>
