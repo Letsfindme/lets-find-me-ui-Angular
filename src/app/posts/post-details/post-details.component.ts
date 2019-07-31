@@ -5,6 +5,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post-creation/post.service';
 import { PostRate } from 'src/app/models/post-rate';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-post-details',
@@ -20,24 +21,25 @@ export class PostDetailsComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   ratingClicked: number;
+  imageToShow: string | ArrayBuffer;
 
   constructor(private postService: PostService,
+    private userService: UserService,
     private route: ActivatedRoute) {
-    console.log("constructor post " + this.post);
+      ;
   }
 
   async getPostByIdUrl() {
     this.route.params.subscribe(userId =>
       this.postService.getPostByUserId(userId['id']).subscribe(
         post => {
-          console.log(post);
           this.post = post;
           this.starCount = this.post.starCount;
           this.postContent = post.postContent[0];
           this.filtersLoaded = Promise.resolve(true);
+          this.getImageByUserId(post.username);
         },
         err => {
-          console.log(err)
         }
       )
     );
@@ -79,7 +81,6 @@ export class PostDetailsComponent implements OnInit {
   }
 
   mystars(event) {
-    console.log(event);
   }
 
   ratingComponentClick(event: any): void {
@@ -90,16 +91,30 @@ export class PostDetailsComponent implements OnInit {
     this.postRate.rate = event.rating;
     this.postService.rateThisPost(this.postRate).subscribe(
       err => {
-        console.log(err)
+
       }
     );
-    console.log('event',this.postRate);
   }
 
   // getPostValue() {
   //   this.post = this.postDetailsService.post;
   // }
 
+  getImageByUserId(name: string) {
+    this.userService.getUserPhoto(name)
+      .subscribe(blob => {
+        this.createImageFromBlob(blob);
+      });
+  }
 
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
 
 }

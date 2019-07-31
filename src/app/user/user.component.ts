@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   userName: string;
   image: any;
   imageToShow: any;
-  
+  userId;
   constructor(private fb: FormBuilder,
     private postService: PostService,
     private http: HttpClient,
@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
       userData => {
         this.user = userData;
         this.userForm.patchValue(userData);
-        this.getImageByUserId(this.user.id);
+        this.getImageByUserId(this.user.username);
         // this.userService.saveUserPhotoToService(userData.id);
         // let img = document.getElementById('user-profile');
         // let url = this.userService.url;
@@ -104,22 +104,23 @@ export class UserComponent implements OnInit {
       postcode: [userAddress.postcode]
     })
   }
+
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]
   }
 
   onUpload() {
     const file = new FormData();
-    file.append('file', this.selectedFile, this.selectedFile.name);
-    this.postService.saveImage(file, this.user.id)
+    file.append('file', this.selectedFile, this.user.username);
+    this.postService.saveImage(file, this.user.username)
       .subscribe(event => {
-        console.log(event); // handle event here
+        console.log('jsp quoi event',event); // handle event here
       });
     //this.getImageByUserId(this.user.id);
   }
 
-  getImageByUserId(id: number) {
-    this.userService.getUserPhoto(id)
+  getImageByUserId(name: string) {
+    this.userService.getUserPhoto(name)
       .subscribe(blob => {
         this.createImageFromBlob(blob);
         this.image = blob;
@@ -130,12 +131,10 @@ export class UserComponent implements OnInit {
   }
 
   createImageFromBlob(image: Blob) {
-    
     let reader = new FileReader();
     reader.addEventListener("load", () => {
       this.imageToShow = reader.result;
     }, false);
-
     if (image) {
       reader.readAsDataURL(image);
     }
