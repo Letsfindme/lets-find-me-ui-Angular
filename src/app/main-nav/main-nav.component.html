@@ -46,7 +46,7 @@
       *ngIf="isHandset$ | async">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-    <a routerLink="/">
+    <a routerLink="">
       <img class="im-here-img" src="../../assets/img/logo.png" alt="img" />
       <p>Let's Find ME</p>
     </a>
@@ -68,7 +68,7 @@
         <button routerLink='login'>Log in</button>
       </li>
       <li class="box">
-        <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" src="assets/img/User_Avatar-04-512.png">
+        <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" [src]="imageToShow">
       </li>
       <mat-menu class="menu-profile" #menu="matMenu">
         <button mat-menu-item>
@@ -97,7 +97,7 @@
     <!-- Nav buttons mobile isHandset -->
     <ul class="nav-list" *ngIf="(isHandset$ | async)">
       <li class="box">
-        <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" src="assets/img/User_Avatar-04-512.png">
+        <img class="user-profile" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" [src]="imageToShow">
       </li>
       <mat-menu class="menu-profile" #menu="matMenu">
         <button mat-menu-item>
