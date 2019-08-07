@@ -2,7 +2,7 @@
   <div class="post-header">
     <!-- <div mat-avatar class="im-here-img" id={{post.username}} alt="img"></div> -->
     <!-- <img mat-avatar class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" /> -->
-    <img mat-avatar class="im-here-img" [src]="imageToShow" />
+    <img mat-avatar class="im-here-img" [src]="imageAvatar" />
     <div class="title">
       <div>{{post.username}}</div>
       <div class="date">{{post.creationDate | date: 'yyyy-MM-dd'}}</div>
@@ -10,7 +10,7 @@
     <div class="spacer"></div>
     <app-rating [rating]="starCount" [itemId]='post.id'></app-rating>
   </div>
-  <img mat-image src="../../assets/img/people-communicating.jpg" alt="Photo of a Shiba Inu">
+  <img mat-image [src]="mainImage" alt="Photo of a Shiba Inu">
   <div>
     <p>
       {{postContent.text}}
