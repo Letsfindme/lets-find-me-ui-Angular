@@ -2,8 +2,9 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -13,6 +14,10 @@ import { AuthService } from '../auth/auth.service';
 })
 export class MainNavComponent {
   TOKEN_KEY = 'AuthToken';
+  imageToShow;
+  image;
+  user;
+  didLoad = false;
   @Input() isLoggedIn: boolean;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
     .pipe(
@@ -20,12 +25,11 @@ export class MainNavComponent {
     );
 
   constructor(public _router: Router,
+    public route: ActivatedRoute,
+    private userService: UserService,
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService) { }
 
-  ngOnInit() {
-    this.getToken();
-  }
 
   public getToken() {
     if (sessionStorage.getItem(this.TOKEN_KEY)) {
@@ -38,7 +42,7 @@ export class MainNavComponent {
   get isLogged(): boolean {
     return this.isLoggedIn;
   }
-  
+
   set isLogged(boolean: boolean) {
     this.isLoggedIn = true;
   }
@@ -46,5 +50,31 @@ export class MainNavComponent {
   logout() {
     this._router.navigateByUrl('/login');
     this.authService.logout();
+  }
+
+  getImageByUserId() {
+    if (!this.didLoad) {
+      this.userService.getUserPhoto(sessionStorage.getItem("AuthUsername"))
+        .subscribe(blob => {
+          this.createImageFromBlob(blob);
+        });
+    }
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+    this.didLoad = true;
+  }
+
+
+  ngOnInit() {
+    this.getToken();
+    this.getImageByUserId()
   }
 }

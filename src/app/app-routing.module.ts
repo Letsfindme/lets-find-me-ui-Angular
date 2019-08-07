@@ -12,13 +12,36 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PostCreationLayoutComponent } from './posts/post-creation-layout/post-creation-layout.component';
 import { PostSearchResultLayoutComponent } from './posts/post-search-result-layout/post-search-result-layout.component';
 import { PostDetailsComponent } from './posts/post-details/post-details.component';
+import { PreloadGuard } from './preload.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeLayoutComponent,
-    children:[
-      {path: '', component: HomePageComponent}
+    children: [
+      { 
+        path: '', 
+        component: HomePageComponent 
+      },
+      {
+        path: 'searchResault',
+        component: PostSearchResultLayoutComponent,
+        canActivate: [AuthGuard]
+      },
+      { 
+        path: 'postCreation', 
+        component: PostCreationLayoutComponent 
+      },
+      { 
+        path: 'posts/:id', 
+        canActivate: [AuthGuard],
+        component: PostDetailsComponent 
+      },
+      { 
+        path: 'profile', 
+        canActivate: [AuthGuard],
+        component: UserComponent 
+      }
     ]
   },
   {
@@ -33,38 +56,6 @@ const routes: Routes = [
     component: LoginLayoutComponent,
     children: [
       { path: '', component: RegisterComponent }
-    ]
-  },
-  {
-    path: 'postCreation',
-    component: HomeLayoutComponent,
-    // canActivate: [AuthGuard],
-    children: [
-      { path: '', component: PostCreationLayoutComponent }
-    ]
-  },
-  {
-    path: 'searchResault',
-    component: HomeLayoutComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: PostSearchResultLayoutComponent }
-    ]
-  },
-  {
-    path: 'posts/:id',
-    component: HomeLayoutComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: PostDetailsComponent }
-    ]
-  },
-  {
-    path: 'profile',
-    component: HomeLayoutComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: UserComponent }
     ]
   },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },

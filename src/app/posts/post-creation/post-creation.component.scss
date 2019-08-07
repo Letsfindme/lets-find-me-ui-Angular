@@ -1,6 +1,6 @@
 .post-card {
   margin: 50px auto;
-  padding: 0 50px;
+  padding: auto 50px;
   max-width: 40rem;
   display: flex;
   justify-content: center;
@@ -18,26 +18,101 @@
   display: flex;
   flex-direction: column;
 }
-.find-button{
+
+.find-button {
   margin: 1rem;
 }
 
 .post-container form {
   margin-bottom: 20px;
 }
-textarea{
+
+textarea {
   display: flex;
 }
+
 .post-container form>* {
   margin: 5px 0;
 }
 
 .post-container .mat-radio-button {
-  margin: 0 12px;
+  margin: auto 12px;
 }
 
 .im-here-img {
   margin: 0 20px;
   width: 40px;
   height: 40px;
+  background-size: cover;
+
+  &#user-profile {
+    border-radius: 50%;
+  }
+}
+
+mat-card button {
+  color: aliceblue;
+  background-color: #FF5A5F;
+}
+
+.image-wrapper li {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  float: left;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  background: #fff;
+  margin-bottom: 15px;
+  list-style-type: none;
+}
+
+.browse-btn {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0.5rem;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.browse-image {
+  position: relative;
+  top: 25%;
+}
+
+.product-image {
+  width: 100%;
+  height: 125px;
+  margin-top: 3px;
+}
+
+a.delete-btn {
+  color: aliceblue;
+  cursor: pointer;
+  border: 1px solid;
+  background-color: tomato;
+  border-radius: 10%;
+}
+
+#cameraImg {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.error {
+  color: #ff0000;
 }

@@ -5,6 +5,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post-creation/post.service';
 import { PostRate } from 'src/app/models/post-rate';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-post-details',
@@ -18,33 +19,37 @@ export class PostDetailsComponent implements OnInit {
   postRate: PostRate;
   starCount: number;
   galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+  galleryImages: NgxGalleryImage[] = [];
   ratingClicked: number;
-
+  imageToShow: string | ArrayBuffer;
+  imgg;
+  userName;
   constructor(private postService: PostService,
+    private userService: UserService,
     private route: ActivatedRoute) {
-    console.log("constructor post " + this.post);
+    this.getPostByIdUrl();
   }
 
-  async getPostByIdUrl() {
+  getPostByIdUrl() {
     this.route.params.subscribe(userId =>
       this.postService.getPostByUserId(userId['id']).subscribe(
         post => {
-          console.log(post);
           this.post = post;
           this.starCount = this.post.starCount;
           this.postContent = post.postContent[0];
           this.filtersLoaded = Promise.resolve(true);
+          this.getImageByUserId(post.username);
+          post.postContent[0].images.forEach(imageId => {
+            this.getPostImage(imageId);
+          });
         },
-        err => {
-          console.log(err)
+        error => {
         }
       )
     );
   }
 
   ngOnInit() {
-    this.getPostByIdUrl();
     this.galleryOptions = [
       {
         width: '100%',
@@ -52,7 +57,6 @@ export class PostDetailsComponent implements OnInit {
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide
       },
-      // max-width 800
       {
         breakpoint: 800,
         width: '100%',
@@ -62,24 +66,11 @@ export class PostDetailsComponent implements OnInit {
         thumbnailsMargin: 20,
         thumbnailMargin: 20
       },
-      // max-width 400
       {
         breakpoint: 400,
         preview: false
       }
     ];
-
-    this.galleryImages = [
-      {
-        small: 'assets/img/1.jpg',
-        medium: 'assets/img/1.jpg',
-        big: 'assets/img/1.jpg'
-      }
-    ];
-  }
-
-  mystars(event) {
-    console.log(event);
   }
 
   ratingComponentClick(event: any): void {
@@ -90,16 +81,35 @@ export class PostDetailsComponent implements OnInit {
     this.postRate.rate = event.rating;
     this.postService.rateThisPost(this.postRate).subscribe(
       err => {
-        console.log(err)
-      }
-    );
-    console.log('event',this.postRate);
+
+      });
   }
 
-  // getPostValue() {
-  //   this.post = this.postDetailsService.post;
-  // }
+  getPostImage(imageId) {
+    this.galleryImages.push({
+      small: 'http://localhost:8050/images?id=' + imageId,
+      medium: 'http://localhost:8050/images?id=' + imageId,
+      big: 'http://localhost:8050/images?id=' + imageId,
+    })
+  }
 
+  getImageByUserId(name: string) {
+    this.userService.getUserPhoto(name)
+      .subscribe(blob => {
+        this.createImageFromBlob(blob);
+        let img = document.getElementById('user-profile');
+        this.imgg = URL.createObjectURL(blob);
+      });
+  }
 
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
 
 }

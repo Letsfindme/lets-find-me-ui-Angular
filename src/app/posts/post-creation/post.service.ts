@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { stringify } from 'querystring';
 import { PostRate } from 'src/app/models/post-rate';
+import { PostContent } from 'src/app/models/PostContent.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,12 +22,11 @@ export class PostService {
   getPostByIdUrl = "http://localhost:8050/posts/";
   rateThisPostUrl = 'http://localhost:8050/posts/addRate';
   photoUrl = 'http://localhost:8050/images/';
-  
-  constructor(private http: HttpClient) { responseType: 'blob'}
 
-  createPost(post: Post): Observable<any> {
-    console.log('hhtp options post service ' + JSON.stringify(this.http.options));
-    console.log(' post service ' + stringify(post));
+  constructor(private http: HttpClient) { }
+
+  createPost(post: Post, images: String[]): Observable<any> {
+    post.postContent[0].images = images
     return this.http.post(this.postUrl, post, httpOptions);
   }
 
@@ -44,28 +44,30 @@ export class PostService {
 
   findGuids(form: any): Observable<any> {
     return this.http.get(this.searchUrl);
-    //return this.http.post(form, this.searchUrl);
   }
 
   rateThisPost(postRate: PostRate): Observable<any> {
-    console.log('service postrate', postRate);
     return this.http.post(this.rateThisPostUrl, postRate);
   }
 
-  saveImage(image: FormData, id: number): Observable<any> {
+  saveImage(image: FormData, id): Observable<any> {
     return this.http
-      .post(`http://localhost:8050/images?id=${id}`, image);
+      .post(`http://localhost:8050/images?id=${id}`, image, { observe: "response" });
   }
 
-  getUserPhoto(id: number): Observable<Blob> {
+  getUserPhoto(id): Observable<Blob> {
     return this.http
       .get(`http://localhost:8050/images?id=${id}`, { responseType: 'blob' });
   }
 
   getImageByUserId(fileName?: string): Observable<Blob> {
     return this.http
-    .get(this.photoUrl + fileName , { responseType: 'blob' });
+      .get(this.photoUrl + fileName, { responseType: 'blob' });
   }
 
-  
+
+  deleteImage(fileName: String) {
+    return this.http
+      .delete(this.photoUrl + fileName);
+  }
 }

@@ -17,18 +17,15 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.post<User>(this.userUrl, user);
+    return this.http.put<User>(this.userUrl, user);
   }
 
-  getUserPhoto(id: number): Observable<Blob> {
-    console.log('getUserPhoto ', id);
-
+  getUserPhoto(id): Observable<Blob> {
     return this.http
       .get(`http://localhost:8050/images?id=${id}`, { responseType: 'blob' });
   }
 
   saveUserPhotoToService(id) {
-    console.log('saveUserPhotoToService', id);
     this.getUserPhoto(id)
       .subscribe(blob => {
         this.createImageFromBlob(blob);
@@ -45,8 +42,8 @@ export class UserService {
     if (image) {
       reader.readAsDataURL(image);
     }
-    console.log('image from blob', this.imageToShow);
   }
+
   userImage() {
     return this.imageToShow;
   }

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { AuthService } from '../auth/auth.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { AuthLoginInfo } from '../models/login-info';
+import { UserService } from '../user/user.service';
 
 // noinspection JSAnnotator
 @Component({
@@ -13,6 +14,7 @@ import { AuthLoginInfo } from '../models/login-info';
 })
 export class LoginComponent {
   form: any = {};
+  user;
   @Output() emitLoggedUser = new EventEmitter<boolean>();
   isLoggedIn = true;
   isLoginFailed = false;
@@ -33,7 +35,7 @@ export class LoginComponent {
   password: string;
 
   constructor(private tokenStorage: TokenStorageService,
-
+    private userService: UserService,
     private router: Router,
     public dialog: MatDialog,
     private authService: AuthService) {
@@ -68,7 +70,12 @@ export class LoginComponent {
           this.tokenStorage.saveUsername(data.username);
           this.tokenStorage.saveAuthorities(data.authorities);
           this.roles = this.tokenStorage.getAuthorities();
-          this.router.navigate(['']);
+          this.userService.getUsers(data.username).subscribe(
+            userData => {
+              this.user = userData;
+              localStorage.setItem("userId", this.user.id)
+              this.router.navigate(['']);
+              });
         },
         error => {
           this.isLoggedIn = false;
@@ -76,7 +83,7 @@ export class LoginComponent {
           this.errorMessage = error.error.message;
         }
       )
-    }, 1000);
+    }, 1500);
   }
 
   reloadPage() {

@@ -1,7 +1,7 @@
-<mat-card class="post-card">
-  <form class="post-container" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+<form class="post-container" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <mat-card class="post-card">
     <div class="post-header">
-      <img class="im-here-img" src="../../assets/img/User_Avatar-04-512.png" alt="img" />
+      <div class="im-here-img" id="user-profile"></div>
       <mat-form-field [hideRequiredMarker]="postForm.value.hideRequired">
         <input matInput formControlName="title" placeholder="Post title" required>
       </mat-form-field>
@@ -26,6 +26,19 @@
         </div>
       </mat-form-field>
     </div>
-    <button class="find-button" mat-raised-button color="primary" type="submit">find answers</button>
-  </form>
-</mat-card>
+  </mat-card>
+
+  <mat-card class="post-card">
+    <!-- <mat-label>Add photos!</mat-label> -->
+    <!-- (change)="onSelectedFile($event)" -->
+    <input class="file-input" style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+    <button class="find-button" mat-raised-button type="submit" (click)="triggerFile(fileInput)">+
+      Add photos</button>
+    <!-- <span>{{file ? file.name : 'or drag and drop file here' }}</span> -->
+    <div #image class="image-wrapper"></div>
+  </mat-card>
+
+  <mat-card class="post-card">
+    <button class="find-button" mat-raised-button type="submit">Create your post</button>
+  </mat-card>
+</form>
