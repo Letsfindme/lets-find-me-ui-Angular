@@ -1,4 +1,4 @@
-import {User} from './user.model';
+import { User } from './user.model';
 import { PostContent } from './PostContent.model';
 
 export class Post {
@@ -12,4 +12,18 @@ export class Post {
   starCount?: number;
   liked?: boolean;
   creationDate: string;
+
+  constructor(
+    id: string,
+    title: string,
+    postContent: PostContent[],
+    category: string,
+    username: string,
+    commentCount: number,
+    likeCount: number,
+    starCount: number,
+    liked: boolean,
+    creationDate: string
+  ) { }
+
 }
