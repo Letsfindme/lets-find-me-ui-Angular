@@ -19,17 +19,18 @@ export class PostDetailsComponent implements OnInit {
   postRate: PostRate;
   starCount: number;
   galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+  galleryImages: NgxGalleryImage[] = [];
   ratingClicked: number;
   imageToShow: string | ArrayBuffer;
-
+  imgg;
+  userName;
   constructor(private postService: PostService,
     private userService: UserService,
     private route: ActivatedRoute) {
-      ;
+    this.getPostByIdUrl();
   }
 
-  async getPostByIdUrl() {
+  getPostByIdUrl() {
     this.route.params.subscribe(userId =>
       this.postService.getPostByUserId(userId['id']).subscribe(
         post => {
@@ -38,15 +39,17 @@ export class PostDetailsComponent implements OnInit {
           this.postContent = post.postContent[0];
           this.filtersLoaded = Promise.resolve(true);
           this.getImageByUserId(post.username);
+          post.postContent[0].images.forEach(imageId => {
+            this.getPostImage(imageId);
+          });
         },
-        err => {
+        error => {
         }
       )
     );
   }
 
   ngOnInit() {
-    this.getPostByIdUrl();
     this.galleryOptions = [
       {
         width: '100%',
@@ -54,7 +57,6 @@ export class PostDetailsComponent implements OnInit {
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide
       },
-      // max-width 800
       {
         breakpoint: 800,
         width: '100%',
@@ -64,23 +66,11 @@ export class PostDetailsComponent implements OnInit {
         thumbnailsMargin: 20,
         thumbnailMargin: 20
       },
-      // max-width 400
       {
         breakpoint: 400,
         preview: false
       }
     ];
-
-    this.galleryImages = [
-      {
-        small: 'assets/img/1.jpg',
-        medium: 'assets/img/1.jpg',
-        big: 'assets/img/1.jpg'
-      }
-    ];
-  }
-
-  mystars(event) {
   }
 
   ratingComponentClick(event: any): void {
@@ -92,18 +82,23 @@ export class PostDetailsComponent implements OnInit {
     this.postService.rateThisPost(this.postRate).subscribe(
       err => {
 
-      }
-    );
+      });
   }
 
-  // getPostValue() {
-  //   this.post = this.postDetailsService.post;
-  // }
+  getPostImage(imageId) {
+    this.galleryImages.push({
+      small: 'http://localhost:8050/images?id=' + imageId,
+      medium: 'http://localhost:8050/images?id=' + imageId,
+      big: 'http://localhost:8050/images?id=' + imageId,
+    })
+  }
 
   getImageByUserId(name: string) {
     this.userService.getUserPhoto(name)
       .subscribe(blob => {
         this.createImageFromBlob(blob);
+        let img = document.getElementById('user-profile');
+        this.imgg = URL.createObjectURL(blob);
       });
   }
 
