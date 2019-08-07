@@ -20,7 +20,9 @@ export class UserComponent implements OnInit {
   userName: string;
   image: any;
   imageToShow: any;
+  imageSrc;
   userId;
+
   constructor(private fb: FormBuilder,
     private postService: PostService,
     private http: HttpClient,
@@ -82,19 +84,12 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.getImageByUserId(this.user.id);
   }
 
   onSubmit() {
     this.user.lastname = this.userForm.controls['lastname'].value;
     this.user.address = this.userForm.controls['address'].value;
-    // this.user.address.forEach(address => {
-    //   address.user = this.user.username;
-    // });
-    //this.user.address[0].user=this.userForm.controls['address'].get[0].user,
-    this.userService.updateUser(this.user).subscribe(data => {
-      console.log('data from back ', data);
-    })
+    this.userService.updateUser(this.user).subscribe()
   }
 
   private convertAddressToForm(userAddress: Address): FormGroup {
@@ -105,35 +100,37 @@ export class UserComponent implements OnInit {
     })
   }
 
+  triggerFile(fileInput) {
+    fileInput.click();
+  }
+
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0]
+    let img = document.getElementById('user-profile');
+    if (event.target.files && event.target.files[0]) {
+      this.selectedFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => this.imageSrc = reader.result;
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   onUpload() {
     const file = new FormData();
     file.append('file', this.selectedFile, this.user.username);
-    this.postService.saveImage(file, this.user.username)
-      .subscribe(event => {
-        console.log('jsp quoi event',event); // handle event here
-      });
-    //this.getImageByUserId(this.user.id);
+    this.postService.saveImage(file, this.user.username).subscribe();
   }
 
   getImageByUserId(name: string) {
     this.userService.getUserPhoto(name)
       .subscribe(blob => {
         this.createImageFromBlob(blob);
-        this.image = blob;
-        let img = document.getElementById('user-profile');
-        let url = URL.createObjectURL(blob);
-        img.style.backgroundImage = `url(${url})`;
       });
   }
 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-      this.imageToShow = reader.result;
+      this.imageSrc = reader.result;
     }, false);
     if (image) {
       reader.readAsDataURL(image);
